@@ -43,13 +43,14 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		intake = new Intake();
 		gearPusher = new GearPusher();
-		//shooters and feeders need their ports in the constructor because there are more than one of them, so the ports can't be assigned from within the class
 		shooter = new FlyWheel();
 		feeder = new Feeder();
 		oi = new OI();
 		
 		//initialize editable SmartDashboard numbers
-		
+		SmartDashboard.putNumber("kA", 0);
+		SmartDashboard.putNumber("kP", 0);
+		SmartDashboard.putNumber("kTurn", 0);
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());

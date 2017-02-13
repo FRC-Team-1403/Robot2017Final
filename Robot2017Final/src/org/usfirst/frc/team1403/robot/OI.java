@@ -1,11 +1,8 @@
 package org.usfirst.frc.team1403.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-//import org.usfirst.frc.team1403.robot.commands.ArcadeDrive;
-import org.usfirst.frc.team1403.robot.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 /**

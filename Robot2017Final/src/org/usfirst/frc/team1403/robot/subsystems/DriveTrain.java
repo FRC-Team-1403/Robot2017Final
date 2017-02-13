@@ -19,10 +19,10 @@ public class DriveTrain extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private CANTalon motor0;
-    private CANTalon motor1; 
-    private CANTalon motor2; 
-    private CANTalon motor3;
+    private CANTalon motor4;
+    private CANTalon motor5; 
+    private CANTalon motor6; 
+    private CANTalon motor7;
     
     public Encoder leftEncoder, rightEncoder;
     
@@ -33,10 +33,10 @@ public class DriveTrain extends Subsystem {
     
     public DriveTrain()
     {
-    	motor0 = new CANTalon(0);
-    	motor1 = new CANTalon(1);
-    	motor2 = new CANTalon(2);
-    	motor3 = new CANTalon(3);
+    	motor4 = new CANTalon(0);
+    	motor5 = new CANTalon(1);
+    	motor6 = new CANTalon(2);
+    	motor7 = new CANTalon(3);
     	isReversed = false;
     	
     	//the encoders and gyro use the ports in robotmap
@@ -68,16 +68,16 @@ public class DriveTrain extends Subsystem {
     public void setLeftRightPower(double leftPower, double rightPower)
     {
 	   if(!isReversed){
-		   motor0.set(-leftPower);
-		   motor1.set(-leftPower);
-		   motor2.set(rightPower);
-		   motor3.set(rightPower);
+		   motor4.set(-leftPower);
+		   motor5.set(-leftPower);
+		   motor6.set(rightPower);
+		   motor7.set(rightPower);
 	   }
 	   else {
-		   motor2.set(-leftPower);
-		   motor3.set(-leftPower);
-		   motor0.set(rightPower);
-		   motor1.set(rightPower);
+		   motor6.set(-leftPower);
+		   motor7.set(-leftPower);
+		   motor4.set(rightPower);
+		   motor5.set(rightPower);
 	   }
 	   
     }
@@ -88,16 +88,16 @@ public class DriveTrain extends Subsystem {
     public void setLeftRightPower(double leftPower, double rightPower, double multiplier)
     {
 	   if(!isReversed){
-		   motor0.set(-leftPower*multiplier);
-		   motor1.set(-leftPower*multiplier);
-		   motor2.set(rightPower*multiplier);
-		   motor3.set(rightPower*multiplier);
+		   motor4.set(-leftPower*multiplier);
+		   motor5.set(-leftPower*multiplier);
+		   motor6.set(rightPower*multiplier);
+		   motor7.set(rightPower*multiplier);
 	   }
 	   else {
-		   motor2.set(-leftPower*multiplier);
-		   motor3.set(-leftPower*multiplier);
-		   motor0.set(rightPower*multiplier);
-		   motor1.set(rightPower*multiplier);
+		   motor6.set(-leftPower*multiplier);
+		   motor7.set(-leftPower*multiplier);
+		   motor4.set(rightPower*multiplier);
+		   motor5.set(rightPower*multiplier);
 	   }
 	   
     }
