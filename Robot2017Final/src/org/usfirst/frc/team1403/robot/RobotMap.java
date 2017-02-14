@@ -44,7 +44,7 @@ public class RobotMap {
 	//feeder ports
 	public static int leftFeeder = 0;
 	public static int rightFeeder = 0;
-	public static double inchesPerTick = 0;
+	public static double feederTickConstant = 0;
 	
 	//intake ports
 	public static int intakeRoller = 0;

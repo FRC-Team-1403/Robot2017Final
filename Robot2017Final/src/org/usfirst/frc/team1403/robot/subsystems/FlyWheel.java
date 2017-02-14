@@ -31,11 +31,11 @@ public class FlyWheel extends Subsystem {
 	
 	//TODO make sure getAnalogInVelocity works
 	public double getLeftRPM() {
-		return leftShooter.getAnalogInVelocity() * RobotMap.rotationsPerTick;
+		return leftShooter.getEncVelocity() * RobotMap.rotationsPerTick;
 	}
 	
 	public double getRightRPM() {
-		return rightShooter.getAnalogInVelocity() * RobotMap.rotationsPerTick;
+		return rightShooter.getEncVelocity() * RobotMap.rotationsPerTick;
 	}
 
     public void initDefaultCommand() {
