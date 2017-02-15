@@ -40,8 +40,8 @@ public class DriveTrain extends Subsystem {
     	isReversed = false;
     	
     	//the encoders and gyro use the ports in robotmap
-    	leftEncoder = new Encoder(RobotMap.leftEncoder1, RobotMap.leftEncoder2);
-    	rightEncoder = new Encoder(RobotMap.rightEncoder1, RobotMap.rightEncoder2);
+    	//leftEncoder = new Encoder(RobotMap.leftEncoder1, RobotMap.leftEncoder2);
+    	//rightEncoder = new Encoder(RobotMap.rightEncoder1, RobotMap.rightEncoder2);
     	gyro = new AnalogGyro(RobotMap.gyro);
     	
     	//Set the distance per pulse as the feet per tick ratio in order to use feet for all motion mapping calculations
@@ -105,19 +105,30 @@ public class DriveTrain extends Subsystem {
     //encoder values all in feet for motion mapping
     
     public double getLeftPosition() {
-    	return leftEncoder.getDistance();
+    	//return leftEncoder.getDistance();
+    	return motor4.getEncPosition() * RobotMap.feetPerTick;
     }
     
     public double getRightPosition() {
-    	return rightEncoder.getDistance();
+    	//return rightEncoder.getDistance();
+    	return motor6.getEncPosition() * RobotMap.feetPerTick;
     }
     
     public double getLeftVelocity() {
-    	return leftEncoder.getRate();
+    	//return leftEncoder.getRate();
+    	return motor4.getEncVelocity() * RobotMap.feetPerTick;
     }
     
     public double getRightVelocity() {
-    	return rightEncoder.getRate();
+    	//return rightEncoder.getRate();
+    	return motor6.getEncVelocity() * RobotMap.feetPerTick;
+    }
+    
+    public void resetEncoders() {
+    	//leftEncoder.reset();
+    	//rightEncoder.reset();
+    	motor4.setEncPosition(0);
+    	motor6.setEncPosition(0);
     }
     
     public double getAngleInRadians() {

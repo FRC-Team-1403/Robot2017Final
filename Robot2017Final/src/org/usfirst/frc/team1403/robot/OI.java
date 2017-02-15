@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1403.robot;
 
+import org.usfirst.frc.team1403.robot.commands.FollowPath;
+
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -77,6 +79,6 @@ public class OI {
 	
 	public OI(){
 		//bind buttons to commands
-		
+		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 	}
 }

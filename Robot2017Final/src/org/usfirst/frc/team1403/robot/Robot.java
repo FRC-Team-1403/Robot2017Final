@@ -7,8 +7,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import trajectoryLib.trajectory.Path;
+import trajectoryLib.trajectory.PathGenerator;
+import trajectoryLib.trajectory.TrajectoryGenerator;
+import trajectoryLib.trajectory.WaypointSequence;
+import trajectoryLib.trajectory.WaypointSequence.Waypoint;
 
 import org.usfirst.frc.team1403.robot.commands.DriveWithJoystick;
+import org.usfirst.frc.team1403.robot.commands.FollowPath;
 import org.usfirst.frc.team1403.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1403.robot.subsystems.Feeder;
 import org.usfirst.frc.team1403.robot.subsystems.FlyWheel;
@@ -31,6 +37,8 @@ public class Robot extends IterativeRobot {
 	public static Feeder feeder;
 	public static OI oi;
 	
+	public static Path straightTestPath;
+	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -45,12 +53,25 @@ public class Robot extends IterativeRobot {
 		gearPusher = new GearPusher();
 		shooter = new FlyWheel();
 		feeder = new Feeder();
-		oi = new OI();
 		
 		//initialize editable SmartDashboard numbers
 		SmartDashboard.putNumber("kA", 0);
 		SmartDashboard.putNumber("kP", 0);
 		SmartDashboard.putNumber("kTurn", 0);
+		
+		//for motion mapping
+		TrajectoryGenerator.Config config = new TrajectoryGenerator.Config();
+		config.max_vel = RobotMap.maxVelocity * .8;
+		config.max_acc = RobotMap.maxAcceleration;
+		config.max_jerk = RobotMap.maxJerk; //TODO pick a value
+		config.dt = .02;
+		
+		WaypointSequence straightTestSequence = new WaypointSequence(5);
+		straightTestSequence.addWaypoint(new Waypoint(0, 0, 0));
+		straightTestSequence.addWaypoint(new Waypoint(8, 0, 0));
+		straightTestPath = PathGenerator.makePath(straightTestSequence, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");
+		
+		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -86,7 +107,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		//autonomousCommand = chooser.getSelected();
-		autonomousCommand = new DriveWithJoystick();
+		autonomousCommand = new FollowPath(straightTestPath);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

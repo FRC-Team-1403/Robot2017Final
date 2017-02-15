@@ -93,22 +93,28 @@ public class TrajectoryDriveController {
 
       double turn = kTurn * angleDiff;
       Robot.driveTrain.setLeftRightPower(speedLeft + turn, speedRight - turn);
-     // Robot.dt.setLeftRightPower(speedLeft, speedRight);
+      
       SmartDashboard.putNumber("Left Velocity from algorithm", followerLeft.segmentVel);
       SmartDashboard.putNumber("Right Velocity from algorithm", followerRight.segmentVel);
       
       SmartDashboard.putNumber("Left Position from algorithm", followerLeft.segmentPos);
       SmartDashboard.putNumber("Right Position from algorithm", followerRight.segmentPos);
       
-      SmartDashboard.putNumber("speedLeft", speedLeft);
-      SmartDashboard.putNumber("speedRight", speedRight);
+      SmartDashboard.putNumber("Left Output", speedLeft);
+      SmartDashboard.putNumber("Right Output", speedRight);
       
-      SmartDashboard.putNumber("Left "
-      		+ ""
-      		+ "Error", followerLeft.last_error_);
-      SmartDashboard.putNumber("Right Error", followerRight.last_error_);
-      //SmartDashboard.putNumber("speedLeft + turn", speedLeft + turn);
-      //SmartDashboard.putNumber("speedRight - turn", speedRight - turn);
+      SmartDashboard.putNumber("Left Position from Encoder", Robot.driveTrain.getLeftPosition());
+  	  SmartDashboard.putNumber("Right Position from Encoder", Robot.driveTrain.getRightPosition());
+  	  
+  	  SmartDashboard.putNumber("Left Velocity from Encoder", Robot.driveTrain.getLeftVelocity());
+  	  SmartDashboard.putNumber("Right Velocity from Encoder", Robot.driveTrain.getRightVelocity());
+      
+      SmartDashboard.putNumber("Left Error", followerLeft.error);
+      SmartDashboard.putNumber("Right Error", followerRight.error);
+      
+      SmartDashboard.putNumber("Left Velocity Error", followerLeft.segmentVel - Robot.driveTrain.getLeftVelocity());
+      SmartDashboard.putNumber("Right Velocity Error", followerRight.segmentVel - Robot.driveTrain.getRightVelocity());
+      
     }
   }
 

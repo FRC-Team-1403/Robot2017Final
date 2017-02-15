@@ -22,6 +22,7 @@ public class RobotMap {
 	public static double wheelBaseWidthInFeet = 0;
 	public static double maxVelocity = 0;
 	public static double maxAcceleration = 0;
+	public static double maxJerk = 0;
 	
 	//drive train ports
 	public static int leftEncoder1 = 0;

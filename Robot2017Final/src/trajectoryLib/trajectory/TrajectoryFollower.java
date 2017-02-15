@@ -14,6 +14,7 @@ public class TrajectoryFollower {
   private double kd_;
   private double kv_;
   private double ka_;
+  public double error;
   public double last_error_;
   private double current_heading = 0;
   private int current_segment;
@@ -46,7 +47,7 @@ public class TrajectoryFollower {
   public double calculate(double distance_so_far) {
     if (current_segment < profile_.getNumSegments()) {
       Trajectory.Segment segment = profile_.getSegment(current_segment);
-      double error = segment.pos - distance_so_far;
+      error = segment.pos - distance_so_far;
       double output = kp_ * error + kd_ * ((error - last_error_)
               / segment.dt - segment.vel) + (kv_ * segment.vel
               + ka_ * segment.acc);
