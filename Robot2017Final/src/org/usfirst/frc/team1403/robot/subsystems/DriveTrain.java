@@ -19,10 +19,10 @@ public class DriveTrain extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private CANTalon motor4;
-    private CANTalon motor5; 
-    private CANTalon motor6; 
-    private CANTalon motor7;
+    public CANTalon motor4;
+    public CANTalon motor5; 
+    public CANTalon motor6; 
+    public CANTalon motor7;
     
     public Encoder leftEncoder, rightEncoder;
     
@@ -33,10 +33,10 @@ public class DriveTrain extends Subsystem {
     
     public DriveTrain()
     {
-    	motor4 = new CANTalon(0);
-    	motor5 = new CANTalon(1);
-    	motor6 = new CANTalon(2);
-    	motor7 = new CANTalon(3);
+    	motor4 = new CANTalon(4);
+    	motor5 = new CANTalon(5);
+    	motor6 = new CANTalon(6);
+    	motor7 = new CANTalon(7);
     	isReversed = false;
     	
     	//the encoders and gyro use the ports in robotmap
@@ -45,8 +45,8 @@ public class DriveTrain extends Subsystem {
     	gyro = new AnalogGyro(RobotMap.gyro);
     	
     	//Set the distance per pulse as the feet per tick ratio in order to use feet for all motion mapping calculations
-    	leftEncoder.setDistancePerPulse(RobotMap.feetPerTick);
-    	rightEncoder.setDistancePerPulse(RobotMap.feetPerTick);
+    	//leftEncoder.setDistancePerPulse(RobotMap.feetPerTick);
+    	//rightEncoder.setDistancePerPulse(RobotMap.feetPerTick);
     }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -106,33 +106,37 @@ public class DriveTrain extends Subsystem {
     
     public double getLeftPosition() {
     	//return leftEncoder.getDistance();
-    	return motor4.getEncPosition() * RobotMap.feetPerTick;
+    	return -1 * motor5.getEncPosition() * RobotMap.feetPerTick;
     }
     
     public double getRightPosition() {
     	//return rightEncoder.getDistance();
-    	return motor6.getEncPosition() * RobotMap.feetPerTick;
+    	return motor7.getEncPosition() * RobotMap.feetPerTick;
     }
     
     public double getLeftVelocity() {
     	//return leftEncoder.getRate();
-    	return motor4.getEncVelocity() * RobotMap.feetPerTick;
+    	return motor5.getEncVelocity() * RobotMap.feetPerTick * -1 * 10;
     }
     
     public double getRightVelocity() {
     	//return rightEncoder.getRate();
-    	return motor6.getEncVelocity() * RobotMap.feetPerTick;
+    	return motor7.getEncVelocity() * RobotMap.feetPerTick * 10;
     }
     
     public void resetEncoders() {
     	//leftEncoder.reset();
     	//rightEncoder.reset();
-    	motor4.setEncPosition(0);
-    	motor6.setEncPosition(0);
+    	motor5.setEncPosition(0);
+    	motor7.setEncPosition(0);
     }
     
     public double getAngleInRadians() {
     	return gyro.getAngle() * Math.PI/180;
+    }
+    public void toggle(){
+    	isReversed = !isReversed;
+    	
     }
     
 }

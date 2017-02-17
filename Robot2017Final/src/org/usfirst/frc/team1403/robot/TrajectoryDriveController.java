@@ -58,8 +58,8 @@ public class TrajectoryDriveController {
   public void reset() {
     followerLeft.reset();
     followerRight.reset();
-    Robot.driveTrain.leftEncoder.reset();
-    Robot.driveTrain.rightEncoder.reset();
+    Robot.driveTrain.resetEncoders();
+    
   }
   
   public int getNumSegments() {

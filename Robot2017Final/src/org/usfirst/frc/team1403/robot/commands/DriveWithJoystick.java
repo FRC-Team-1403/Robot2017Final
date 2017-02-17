@@ -3,6 +3,7 @@ package org.usfirst.frc.team1403.robot.commands;
 import org.usfirst.frc.team1403.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -22,6 +23,14 @@ public class DriveWithJoystick extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//negative because the pixel xy plane starts from the top - Alex... yeah just ignore this
+    	SmartDashboard.putNumber("Left Encoder Value", Robot.driveTrain.getLeftPosition());
+    	SmartDashboard.putNumber("Right Encoder Value", Robot.driveTrain.getRightPosition());
+    	SmartDashboard.putNumber("Left Encoder Velocity", Robot.driveTrain.getLeftVelocity());
+    	SmartDashboard.putNumber("Right Encoder Velocity", Robot.driveTrain.getRightVelocity());
+    	if(Robot.oi.djoy.getRawButton(5))
+    	{
+    		Robot.driveTrain.resetEncoders();
+    	}
     	if(Robot.oi.djoy.getRawButton(6)) {
     		Robot.driveTrain.setLeftRightPower(-Robot.oi.djoy.getRawAxis(1), -Robot.oi.djoy.getRawAxis(5), .5);
     	}

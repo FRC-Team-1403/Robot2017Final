@@ -55,6 +55,9 @@ public class Robot extends IterativeRobot {
 		feeder = new Feeder();
 		
 		//initialize editable SmartDashboard numbers
+		SmartDashboard.putNumber("Left Power", 0);
+		SmartDashboard.putNumber("Right Power", 0);
+    	SmartDashboard.putNumber("Right Encoder Velocity", 0);
 		SmartDashboard.putNumber("kA", 0);
 		SmartDashboard.putNumber("kP", 0);
 		SmartDashboard.putNumber("kTurn", 0);
@@ -107,7 +110,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		//autonomousCommand = chooser.getSelected();
-		autonomousCommand = new FollowPath(straightTestPath);
+		autonomousCommand = new DriveWithJoystick();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

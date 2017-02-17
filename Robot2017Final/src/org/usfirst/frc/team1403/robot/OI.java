@@ -1,6 +1,9 @@
 package org.usfirst.frc.team1403.robot;
 
+import org.usfirst.frc.team1403.robot.commands.DriveWithButton;
+import org.usfirst.frc.team1403.robot.commands.DriveWithButtonFast;
 import org.usfirst.frc.team1403.robot.commands.FollowPath;
+import org.usfirst.frc.team1403.robot.commands.MakeGearHolderFront;
 
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -80,5 +83,8 @@ public class OI {
 	public OI(){
 		//bind buttons to commands
 		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
+		djoyB.whileHeld(new DriveWithButton());
+		djoyX.whileHeld(new DriveWithButtonFast());
+		djoyBack.whenPressed(new MakeGearHolderFront());
 	}
 }
