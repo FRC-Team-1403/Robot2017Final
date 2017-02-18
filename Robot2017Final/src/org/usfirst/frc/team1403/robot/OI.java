@@ -104,14 +104,16 @@ public class OI {
 	public OI(){
 		//bind buttons to commands
 		
-		djoyRT.whileHeld(new DriveWithButtonFast());
-		djoyY.whenPressed(new MakeGearHolderFront());
+		djoyX.whileHeld(new DriveWithButtonFast());
+		//If MakeGearHolderFront is activated, the robot will drive in reverse
+		djoyL.whileHeld(new MakeGearHolderFront());
+		ojoyB.whileHeld(new DriveWithButton());
 		
-		ojoyL.whileHeld(new RollersIn());
-		ojoyR.whileHeld(new Shoot());
+		ojoyRT.whileHeld(new Shoot());
 		ojoyA.whileHeld(new RollersOut());
-		ojoyRJB.whileHeld(new PushGearOut());
-		ojoyLJB.whileHeld(new RetractGearPusher());
+		ojoyR.whenPressed(new PushGearOut());
+		ojoyL.whenPressed(new RetractGearPusher());
+		ojoyLT.whileHeld(new RollersIn());
 		
 		tjoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 		tjoyY.whileHeld(new DriveWithOneJoystick());

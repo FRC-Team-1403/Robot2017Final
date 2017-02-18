@@ -22,13 +22,9 @@ public class DriveWithButton extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("hi");
-    	//negative because the pixel xy plane starts from the top - Alex... yeah just ignore this
-    	SmartDashboard.putNumber("Left Encoder Value", Robot.driveTrain.getLeftPosition());
-    	SmartDashboard.putNumber("Right Encoder Value", Robot.driveTrain.getRightPosition());
-    	SmartDashboard.putNumber("Left Encoder Velocity", Robot.driveTrain.getLeftVelocity());
-    	SmartDashboard.putNumber("Right Encoder Velocity", Robot.driveTrain.getRightVelocity());
-    	Robot.driveTrain.setLeftRightPower(SmartDashboard.getNumber("Left Power", 0), SmartDashboard.getNumber("Right Power", 0));
+    	//System.out.println("hi");
+    
+    	Robot.driveTrain.setLeftRightPower(0.05, 0.05);
     	
     }
 

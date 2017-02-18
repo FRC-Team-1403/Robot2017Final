@@ -26,33 +26,35 @@ public class RobotMap {
 	public static double maxJerk = 11.2;
 	
 	//drive train ports
-	public static int leftEncoder1 = 0;
+	/*public static int leftEncoder1 = 0;
 	public static int leftEncoder2 = 0;
 	public static int rightEncoder1 = 0;
-	public static int rightEncoder2 = 0;
+	public static int rightEncoder2 = 0;*/
 	public static int gyro = 0;
 	
 	//shooter ports
-	public static int leftFlyWheel = 0;
-	public static int rightFlyWheel = 0;
-	public static int leftShooterEncoder1 = 0;
+	public static int leftFlyWheel = 9;
+	public static int rightFlyWheel = 10;
+	/*public static int leftShooterEncoder1 = 0;
 	public static int leftShooterEncoder2 = 0;
 	public static int rightShooterEncoder1 = 0;
-	public static int rightShooterEncoder2 = 0;
+	public static int rightShooterEncoder2 = 0;*/
 	
-	public static double shooterRPM = 0;
-	public static double rotationsPerTick = 0;
+	public static double leftshooterRPM = -3304;
+	public static double rightshooterRPM = 3304;
+	
+	public static double rotationsPerTick = 256;
 	
 	//feeder ports
-	public static int leftFeeder = 0;
-	public static int rightFeeder = 0;
-	public static double feederTickConstant = 0;
+	public static int leftFeeder = 1;
+	public static int rightFeeder = 2;
+	//public static double feederTickConstant = 0;
 	
 	//intake ports
 	public static int intakeRoller = 0;
 	
 	//gear pusher ports
 	public static int gearPusher = 0;
-	
+	// we will figure this out later i gues....
 	
 }

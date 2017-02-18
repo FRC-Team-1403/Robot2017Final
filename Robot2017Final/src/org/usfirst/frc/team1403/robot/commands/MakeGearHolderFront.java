@@ -21,20 +21,27 @@ public class MakeGearHolderFront extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println('y');
-    	Robot.driveTrain.toggle();
+       	if(Robot.oi.djoy.getRawButton(6)) {
+    		Robot.driveTrain.setLeftRightPower(-Robot.oi.djoy.getRawAxis(1), -Robot.oi.djoy.getRawAxis(5), .5);
+    	}
+    	else {
+    		Robot.driveTrain.setLeftRightPower(-Robot.oi.djoy.getRawAxis(1), -Robot.oi.djoy.getRawAxis(5));
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	
     }
 }
