@@ -58,6 +58,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Left Power", 0);
 		SmartDashboard.putNumber("Right Power", 0);
     	SmartDashboard.putNumber("Right Encoder Velocity", 0);
+    	SmartDashboard.putNumber("kV", 0);
 		SmartDashboard.putNumber("kA", 0);
 		SmartDashboard.putNumber("kP", 0);
 		SmartDashboard.putNumber("kTurn", 0);
@@ -71,7 +72,7 @@ public class Robot extends IterativeRobot {
 		
 		WaypointSequence straightTestSequence = new WaypointSequence(5);
 		straightTestSequence.addWaypoint(new Waypoint(0, 0, 0));
-		straightTestSequence.addWaypoint(new Waypoint(8, 0, 0));
+		straightTestSequence.addWaypoint(new Waypoint(10, 0, 0));
 		straightTestPath = PathGenerator.makePath(straightTestSequence, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");
 		
 		oi = new OI();

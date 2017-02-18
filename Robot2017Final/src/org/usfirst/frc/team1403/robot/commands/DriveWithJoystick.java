@@ -23,10 +23,12 @@ public class DriveWithJoystick extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//negative because the pixel xy plane starts from the top - Alex... yeah just ignore this
-    	SmartDashboard.putNumber("Left Encoder Value", Robot.driveTrain.getLeftPosition());
-    	SmartDashboard.putNumber("Right Encoder Value", Robot.driveTrain.getRightPosition());
-    	SmartDashboard.putNumber("Left Encoder Velocity", Robot.driveTrain.getLeftVelocity());
-    	SmartDashboard.putNumber("Right Encoder Velocity", Robot.driveTrain.getRightVelocity());
+    	SmartDashboard.putNumber("Left Position from Encoder", Robot.driveTrain.getLeftPosition());
+    	SmartDashboard.putNumber("Right Position from Encoder", Robot.driveTrain.getRightPosition());
+    	SmartDashboard.putNumber("Left Velocity from Encoder", Robot.driveTrain.getLeftVelocity());
+    	SmartDashboard.putNumber("Right Velocity from Encoder", Robot.driveTrain.getRightVelocity());
+    	SmartDashboard.putNumber("Left Output", -Robot.oi.djoy.getRawAxis(1));
+    	SmartDashboard.putNumber("Right Output", -Robot.oi.djoy.getRawAxis(5));
     	if(Robot.oi.djoy.getRawButton(5))
     	{
     		Robot.driveTrain.resetEncoders();

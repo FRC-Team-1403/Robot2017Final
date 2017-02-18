@@ -2,9 +2,16 @@ package org.usfirst.frc.team1403.robot;
 
 import org.usfirst.frc.team1403.robot.commands.DriveWithButton;
 import org.usfirst.frc.team1403.robot.commands.DriveWithButtonFast;
+import org.usfirst.frc.team1403.robot.commands.DriveWithOneJoystick;
 import org.usfirst.frc.team1403.robot.commands.FollowPath;
 import org.usfirst.frc.team1403.robot.commands.MakeGearHolderFront;
+import org.usfirst.frc.team1403.robot.commands.PushGearOut;
+import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
+import org.usfirst.frc.team1403.robot.commands.RollersIn;
+import org.usfirst.frc.team1403.robot.commands.RollersOut;
+import org.usfirst.frc.team1403.robot.commands.Shoot;
 
+import CougarLibrary.JoystickAnalogButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -52,6 +59,11 @@ public class OI {
 	public JoystickButton djoyR = new JoystickButton(djoy, 6);
 	public JoystickButton djoyBack = new JoystickButton(djoy, 7);
 	public JoystickButton djoyStart = new JoystickButton(djoy, 8);
+	public JoystickButton djoyLJB = new JoystickButton(djoy, 9);
+	public JoystickButton djoyRJB = new JoystickButton(djoy, 10);
+	public JoystickAnalogButton djoyLT = new JoystickAnalogButton(djoy,2,0.5);
+	public JoystickAnalogButton djoyRT = new JoystickAnalogButton(djoy,3,0.5);
+	
 	
 	//ojoy is the operator's configuration at competition
 	//only bind necessary functionality to ojoy, like command groups
@@ -65,6 +77,10 @@ public class OI {
 	public JoystickButton ojoyR = new JoystickButton(ojoy, 6);
 	public JoystickButton ojoyBack = new JoystickButton(ojoy, 7);
 	public JoystickButton ojoyStart = new JoystickButton(ojoy, 8);
+	public JoystickButton ojoyLJB = new JoystickButton(ojoy, 9);
+	public JoystickButton ojoyRJB = new JoystickButton(ojoy, 10);
+	public JoystickAnalogButton ojoyLT = new JoystickAnalogButton(ojoy,2,0.5);
+	public JoystickAnalogButton ojoyRT = new JoystickAnalogButton(ojoy,3,0.5);
 	
 	//tjoy is for testing purposes
 	//bind all the basic functionality of all the subsystems except the drive train to here
@@ -79,12 +95,26 @@ public class OI {
 	public JoystickButton tjoyR = new JoystickButton(tjoy, 6);
 	public JoystickButton tjoyBack = new JoystickButton(tjoy, 7);
 	public JoystickButton tjoyStart = new JoystickButton(tjoy, 8);
+	public JoystickButton tjoyLJB = new JoystickButton(tjoy, 9);
+	public JoystickButton tjoyRJB = new JoystickButton(tjoy, 10);
+	public JoystickAnalogButton tjoyLT = new JoystickAnalogButton(tjoy,2,0.5);
+	public JoystickAnalogButton tjoyRT = new JoystickAnalogButton(tjoy,3,0.5);
+	
 	
 	public OI(){
 		//bind buttons to commands
 		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
-		djoyB.whileHeld(new DriveWithButton());
-		djoyX.whileHeld(new DriveWithButtonFast());
+		djoyLT.whileHeld(new DriveWithButton());
+		djoyRT.whileHeld(new DriveWithButtonFast());
 		djoyBack.whenPressed(new MakeGearHolderFront());
+		djoyY.whileHeld(new DriveWithOneJoystick());
+		ojoyL.whileHeld(new RollersIn());
+		ojoyR.whileHeld(new Shoot());
+		ojoyA.whileHeld(new RollersOut());
+		ojoyRJB.whileHeld(new PushGearOut());
+		ojoyLJB.whileHeld(new RetractGearPusher());
+		
+		
+	
 	}
 }

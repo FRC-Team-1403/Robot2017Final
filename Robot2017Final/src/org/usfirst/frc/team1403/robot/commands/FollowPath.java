@@ -21,7 +21,8 @@ public class FollowPath extends Command {
         requires(Robot.driveTrain);
         this.path = path;
         //kV, kA, kP, kTurn
-        driveController = new TrajectoryDriveController(1.0/RobotMap.maxVelocity, SmartDashboard.getNumber("kA", 0), SmartDashboard.getNumber("kP", 0), SmartDashboard.getNumber("kTurn", 0));
+        //1.0/RobotMap.maxVelocity
+        driveController = new TrajectoryDriveController(1.0/RobotMap.maxVelocity, SmartDashboard.getNumber("kA", 0), SmartDashboard.getNumber("kP", 0), 0);
     }
 
     // Called just before this Command runs the first time
