@@ -4,6 +4,7 @@ import org.usfirst.frc.team1403.robot.commands.DriveWithButton;
 import org.usfirst.frc.team1403.robot.commands.DriveWithButtonFast;
 import org.usfirst.frc.team1403.robot.commands.DriveWithOneJoystick;
 import org.usfirst.frc.team1403.robot.commands.FollowPath;
+import org.usfirst.frc.team1403.robot.commands.LoadBall;
 import org.usfirst.frc.team1403.robot.commands.MakeGearHolderFront;
 import org.usfirst.frc.team1403.robot.commands.PushGearOut;
 import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
@@ -107,13 +108,14 @@ public class OI {
 		djoyX.whileHeld(new DriveWithButtonFast());
 		//If MakeGearHolderFront is activated, the robot will drive in reverse
 		djoyL.whileHeld(new MakeGearHolderFront());
-		ojoyB.whileHeld(new DriveWithButton());
+		djoyB.whileHeld(new DriveWithButton());
 		
 		ojoyRT.whileHeld(new Shoot());
 		ojoyA.whileHeld(new RollersOut());
 		ojoyR.whenPressed(new PushGearOut());
 		ojoyL.whenPressed(new RetractGearPusher());
 		ojoyLT.whileHeld(new RollersIn());
+		ojoyLJB.whenPressed(new LoadBall());
 		
 		tjoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 		tjoyY.whileHeld(new DriveWithOneJoystick());
