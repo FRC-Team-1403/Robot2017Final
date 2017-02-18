@@ -103,18 +103,18 @@ public class OI {
 	
 	public OI(){
 		//bind buttons to commands
-		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
-		djoyLT.whileHeld(new DriveWithButton());
+		
 		djoyRT.whileHeld(new DriveWithButtonFast());
-		djoyBack.whenPressed(new MakeGearHolderFront());
-		djoyY.whileHeld(new DriveWithOneJoystick());
+		djoyY.whenPressed(new MakeGearHolderFront());
+		
 		ojoyL.whileHeld(new RollersIn());
 		ojoyR.whileHeld(new Shoot());
 		ojoyA.whileHeld(new RollersOut());
 		ojoyRJB.whileHeld(new PushGearOut());
 		ojoyLJB.whileHeld(new RetractGearPusher());
 		
-		
+		tjoyA.whenPressed(new FollowPath(Robot.straightTestPath));
+		tjoyY.whileHeld(new DriveWithOneJoystick());
 	
 	}
 }
