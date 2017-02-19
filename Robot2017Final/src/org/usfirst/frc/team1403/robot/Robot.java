@@ -65,14 +65,15 @@ public class Robot extends IterativeRobot {
 		
 		//for motion mapping
 		TrajectoryGenerator.Config config = new TrajectoryGenerator.Config();
-		config.max_vel = RobotMap.maxVelocity * .8;
+		config.max_vel = RobotMap.maxVelocity * .5;
 		config.max_acc = RobotMap.maxAcceleration;
 		config.max_jerk = RobotMap.maxJerk; //TODO pick a value
 		config.dt = .02;
 		
 		WaypointSequence straightTestSequence = new WaypointSequence(5);
 		straightTestSequence.addWaypoint(new Waypoint(0, 0, 0));
-		straightTestSequence.addWaypoint(new Waypoint(10, 0, 0));
+		straightTestSequence.addWaypoint(new Waypoint(1, 0, 0));
+		straightTestSequence.addWaypoint(new Waypoint(6.427, 4.88, Math.PI/3));
 		straightTestPath = PathGenerator.makePath(straightTestSequence, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");
 		
 		oi = new OI();

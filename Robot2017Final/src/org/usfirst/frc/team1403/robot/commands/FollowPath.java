@@ -22,11 +22,12 @@ public class FollowPath extends Command {
         this.path = path;
         //kV, kA, kP, kTurn
         //1.0/RobotMap.maxVelocity
-        driveController = new TrajectoryDriveController(1.0/RobotMap.maxVelocity, SmartDashboard.getNumber("kA", 0), SmartDashboard.getNumber("kP", 0), 0);
-    }
+            }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	driveController = new TrajectoryDriveController(1.0/RobotMap.maxVelocity, SmartDashboard.getNumber("kA", 0), SmartDashboard.getNumber("kP", 0), 0);
+
     	Robot.driveTrain.resetEncoders();
     	Robot.driveTrain.gyro.reset();
     	driveController.loadProfile(path.getLeftWheelTrajectory(), path.getRightWheelTrajectory(), 1.0, 0);
@@ -45,6 +46,10 @@ public class FollowPath extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	/*SmartDashboard.putNumber("Left Error", 0);
+    	SmartDashboard.putNumber("Right Error", 0);
+    	SmartDashboard.putNumber("Left Velocity Error", 0);
+    	SmartDashboard.putNumber("Right Velocity Error", 0);*/
     }
 
     // Called when another command which requires one or more of the same
