@@ -11,6 +11,7 @@ import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
 import org.usfirst.frc.team1403.robot.commands.RollersIn;
 import org.usfirst.frc.team1403.robot.commands.RollersOut;
 import org.usfirst.frc.team1403.robot.commands.Shoot;
+import org.usfirst.frc.team1403.robot.commands.VoltageAllSteps;
 
 import CougarLibrary.JoystickAnalogButton;
 import edu.wpi.first.wpilibj.Joystick;
@@ -116,7 +117,8 @@ public class OI {
 		ojoyL.whenPressed(new RetractGearPusher());
 		ojoyLT.whileHeld(new RollersIn());
 		ojoyLJB.whenPressed(new LoadBall());
-		
+		ojoyStart.whileHeld(new VoltageAllSteps());
+	//	ojoyStart.whenreleased(new )
 		tjoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 		tjoyY.whileHeld(new DriveWithOneJoystick());
 	

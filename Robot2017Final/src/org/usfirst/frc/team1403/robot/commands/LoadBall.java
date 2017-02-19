@@ -12,7 +12,7 @@ public class LoadBall extends Command {
     public LoadBall() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.feeder);
-        setTimeout(.1);
+        setTimeout(.2);
     }
 
     // Called just before this Command runs the first time
