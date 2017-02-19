@@ -108,7 +108,7 @@ public class OI {
 		
 		djoyX.whileHeld(new DriveWithButtonFast());
 		//If MakeGearHolderFront is activated, the robot will drive in reverse
-		djoyL.whileHeld(new MakeGearHolderFront());
+		//djoyL.whileHeld(new MakeGearHolderFront());
 		djoyB.whileHeld(new DriveWithButton());
 		
 		ojoyRT.whileHeld(new Shoot());
@@ -119,8 +119,8 @@ public class OI {
 		ojoyLJB.whenPressed(new LoadBall());
 		ojoyStart.whileHeld(new VoltageAllSteps());
 	//	ojoyStart.whenreleased(new )
-		tjoyA.whenPressed(new FollowPath(Robot.straightTestPath));
-		tjoyY.whileHeld(new DriveWithOneJoystick());
+		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
+		djoyY.whileHeld(new DriveWithOneJoystick());
 	
 	}
 }

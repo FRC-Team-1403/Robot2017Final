@@ -29,7 +29,7 @@ public class DriveTrain extends Subsystem {
     public AnalogGyro gyro;
     
     //used to change setLeftRightPower
-    private boolean isReversed;
+    public boolean isReversed;
     
     public DriveTrain()
     {

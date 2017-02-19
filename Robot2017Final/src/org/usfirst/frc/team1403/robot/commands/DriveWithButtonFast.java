@@ -27,7 +27,14 @@ public class DriveWithButtonFast extends Command {
     	SmartDashboard.putNumber("Right Encoder Value", Robot.driveTrain.getRightPosition());
     	SmartDashboard.putNumber("Left Encoder Velocity", Robot.driveTrain.getLeftVelocity());
     	SmartDashboard.putNumber("Right Encoder Velocity", Robot.driveTrain.getRightVelocity());
-    	Robot.driveTrain.setLeftRightPower(SmartDashboard.getNumber("Left Power", 0), SmartDashboard.getNumber("Right Power", 0));
+    	if(Robot.oi.djoy.getRawButton(5))
+    	{
+    		Robot.driveTrain.isReversed = true;
+    	}
+    	else {
+    		Robot.driveTrain.isReversed = false;
+    	}
+    	Robot.driveTrain.setLeftRightPower(1, 1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

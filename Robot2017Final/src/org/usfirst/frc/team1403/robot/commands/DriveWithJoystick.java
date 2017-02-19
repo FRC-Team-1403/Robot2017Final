@@ -31,8 +31,12 @@ public class DriveWithJoystick extends Command {
     	SmartDashboard.putNumber("Right Output", -Robot.oi.djoy.getRawAxis(5));
     	if(Robot.oi.djoy.getRawButton(5))
     	{
-    		Robot.driveTrain.resetEncoders();
+    		Robot.driveTrain.isReversed = true;
     	}
+    	else {
+    		Robot.driveTrain.isReversed = false;
+    	}
+    	
     	if(Robot.oi.djoy.getRawButton(6)) {
     		Robot.driveTrain.setLeftRightPower(-Robot.oi.djoy.getRawAxis(1), -Robot.oi.djoy.getRawAxis(5), .5);
     	}

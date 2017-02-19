@@ -21,13 +21,14 @@ public class DriveWithOneJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.setLeftRightPower(Robot.oi.djoy.getRawAxis(1), Robot.oi.djoy.getRawAxis(1));
+    	Robot.driveTrain.setLeftRightPower(-Robot.oi.djoy.getRawAxis(1), -Robot.oi.djoy.getRawAxis(1));
     	SmartDashboard.putNumber("Left Position from Encoder", Robot.driveTrain.getLeftPosition());
     	SmartDashboard.putNumber("Right Position from Encoder", Robot.driveTrain.getRightPosition());
     	SmartDashboard.putNumber("Left Velocity from Encoder", Robot.driveTrain.getLeftVelocity());
     	SmartDashboard.putNumber("Right Velocity from Encoder", Robot.driveTrain.getRightVelocity());
     	SmartDashboard.putNumber("Left Output", -Robot.oi.djoy.getRawAxis(1));
     	SmartDashboard.putNumber("Right Output", -Robot.oi.djoy.getRawAxis(5));
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

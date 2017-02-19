@@ -23,8 +23,17 @@ public class DriveWithButton extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//System.out.println("hi");
-    
-    	Robot.driveTrain.setLeftRightPower(0.05, 0.05);
+    	if (Robot.driveTrain.isReversed) {
+    		Robot.driveTrain.setLeftRightPower(0.1, 0.1);
+    	}
+    	if(Robot.oi.djoy.getRawButton(5))
+    	{
+    		Robot.driveTrain.isReversed = true;
+    	}
+    	else {
+    		Robot.driveTrain.isReversed = false;
+    	}
+    	Robot.driveTrain.setLeftRightPower(.1, .1);
     	
     }
 
