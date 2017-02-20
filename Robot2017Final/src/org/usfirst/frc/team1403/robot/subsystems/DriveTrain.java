@@ -64,7 +64,7 @@ public class DriveTrain extends Subsystem {
     	isReversed = true;
     }
     
-  //don't set the motors directly; always use this method because it sets the motors differently based off of which side of the robot is considered the front
+  //do not set the motors directly; always use this method because it sets the motors differently based off of which side of the robot is considered the front
     public void setLeftRightPower(double leftPower, double rightPower)
     {
 	   if(!isReversed){
