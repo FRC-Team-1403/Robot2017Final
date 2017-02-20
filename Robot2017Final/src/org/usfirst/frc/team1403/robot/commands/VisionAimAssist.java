@@ -64,5 +64,9 @@ public class VisionAimAssist extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.driveTrain.motor4.set(0);
+    	Robot.driveTrain.motor5.set(0);
+    	Robot.driveTrain.motor6.set(0);
+    	Robot.driveTrain.motor7.set(0);
     }
 }
