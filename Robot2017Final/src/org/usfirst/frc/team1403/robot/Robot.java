@@ -115,7 +115,7 @@ public class Robot extends IterativeRobot {
 		h = SmartDashboard.getNumber("height", 241);
 		totalInchHeight = 1200/h; //conversion of Robot.x to inches from starting autonomous position
 		totalInchWidth = 640/w;
-		autodist = 52; //distance in inches
+		autodist = 51; //distance of vertical leg in right triangle
 		diffConversion = (Math.abs((x*totalInchWidth)/320))-6.5;
 		dC = (Math.abs((x*totalInchWidth)/320))+2;
 		hypotenuse = Math.sqrt((Math.pow(diffConversion, 2))+(Math.pow(autodist, 2)));

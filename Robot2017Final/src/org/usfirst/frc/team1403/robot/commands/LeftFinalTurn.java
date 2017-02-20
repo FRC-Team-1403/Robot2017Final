@@ -23,10 +23,7 @@ public class LeftFinalTurn extends Command {
     	
     	if (Robot.angle > 0){
     	System.out.println("Robot is Moving");
-    	Robot.driveTrain.motor4.set(-0.2);
-    	Robot.driveTrain.motor5.set(-0.2);
-    	Robot.driveTrain.motor6.set(-0.2);
-    	Robot.driveTrain.motor7.set(-0.2);
+    	Robot.driveTrain.setLeftRightPower(0, 0.2);
     	}   	
     	
     }
@@ -38,10 +35,7 @@ public class LeftFinalTurn extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.motor4.set(0);
-    	Robot.driveTrain.motor5.set(0);
-    	Robot.driveTrain.motor6.set(0);
-    	Robot.driveTrain.motor7.set(0);
+    	Robot.driveTrain.setLeftRightPower(0, 0);
     }
 
     // Called when another command which requires one or more of the same

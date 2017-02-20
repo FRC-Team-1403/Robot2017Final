@@ -26,18 +26,12 @@ public class VisionAutoFromWall extends Command {
     	
     	if (Robot.subtracted > 0.5){
     	System.out.println("Robot is Moving");
-    	Robot.driveTrain.motor4.set(0.2);
-    	Robot.driveTrain.motor5.set(0.2);
-    	Robot.driveTrain.motor6.set(0.2);
-    	Robot.driveTrain.motor7.set(0.2);
+    	Robot.driveTrain.setLeftRightPower(0.2, 0);
     	}   	
     	
     	if (Robot.subtracted < -0.5){
         	System.out.println("other side");
-        	Robot.driveTrain.motor4.set(-0.2);
-        	Robot.driveTrain.motor5.set(-0.2);
-        	Robot.driveTrain.motor6.set(-0.2);
-        	Robot.driveTrain.motor7.set(-0.2);
+        Robot.driveTrain.setLeftRightPower(0, 0.2);
         	} 
     
     }
@@ -49,10 +43,7 @@ public class VisionAutoFromWall extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	
-    	Robot.driveTrain.motor4.set(0);
-    	Robot.driveTrain.motor5.set(0);
-    	Robot.driveTrain.motor6.set(0);
-    	Robot.driveTrain.motor7.set(0);
+    	Robot.driveTrain.setLeftRightPower(0, 0);
     	System.out.println("Finished");
     }
 

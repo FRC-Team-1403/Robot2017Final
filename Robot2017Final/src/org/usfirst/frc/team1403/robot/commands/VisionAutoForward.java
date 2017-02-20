@@ -24,10 +24,7 @@ public class VisionAutoForward extends Command {
 
     protected void execute() {
 		
-		Robot.driveTrain.motor4.set(speed);
-	   	Robot.driveTrain.motor5.set(speed);
-	   	Robot.driveTrain.motor6.set(-speed);
-	   	Robot.driveTrain.motor7.set(-speed);
+		Robot.driveTrain.setLeftRightPower(speed, speed);
 	   	System.out.println("placementDistance (same as hypotenuse) = " + placementDistance);
 	   	System.out.println("left encoder = " + Robot.driveTrain.getLeftPosition());
     	System.out.println("right encoder = " + Robot.driveTrain.getRightPosition());
@@ -47,10 +44,7 @@ public class VisionAutoForward extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.motor4.set(0);
-	   	Robot.driveTrain.motor5.set(0);
-	   	Robot.driveTrain.motor6.set(0);
-	   	Robot.driveTrain.motor7.set(0);
+    	Robot.driveTrain.setLeftRightPower(0, 0);
     }
 
     // Called when another command which requires one or more of the same

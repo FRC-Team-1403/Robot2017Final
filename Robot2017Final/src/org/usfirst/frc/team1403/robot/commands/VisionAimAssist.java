@@ -25,26 +25,12 @@ public class VisionAimAssist extends Command {
     	SmartDashboard.putBoolean("Aligned", false);
     	
     	if (diff <= -68) {
-    		
-    		
-    		Robot.driveTrain.motor4.set(0.3);
-    		Robot.driveTrain.motor5.set(0.3);
-    		Robot.driveTrain.motor6.set(0.3);
-    		Robot.driveTrain.motor7.set(0.3);
+    		Robot.driveTrain.setLeftRightPower(0.2, -0.2);
     }
     		    	
        	if (diff >= -75){
-    		    		
-       		
-        	Robot.driveTrain.motor4.set(-0.3);
-        	Robot.driveTrain.motor5.set(-0.3);
-        	Robot.driveTrain.motor6.set(-0.3);
-        	Robot.driveTrain.motor7.set(-0.3);
-        	
-        	
+        	Robot.driveTrain.setLeftRightPower(-0.2, 0.2);
        	}
-    		    	
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
