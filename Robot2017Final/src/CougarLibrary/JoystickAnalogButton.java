@@ -69,7 +69,7 @@ public class JoystickAnalogButton extends Button {
  
   /**
    * Get the defined threshold value.
-   * @return the threshold value
+   * @return the threshold value  vv vvv v  vvvv  vv  v v vv vv vv vv v 
    */
   public double getThreshold(){
   	return THRESHOLD;

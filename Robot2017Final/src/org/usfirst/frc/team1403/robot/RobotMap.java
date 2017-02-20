@@ -22,7 +22,7 @@ public class RobotMap {
 	public static double feetPerTick = .0010047574;
 	public static double wheelBaseWidthInFeet = 21.125;
 	public static double maxVelocity = 12.5;
-	public static double maxAcceleration = 15.5;
+	public static double maxAcceleration = 5;
 	public static double maxJerk = 11.2;
 	
 	//drive train ports
@@ -54,7 +54,10 @@ public class RobotMap {
 	public static int intakeRoller = 0;
 	
 	//gear pusher ports
-	public static int gearPusher = 0;
+	public static int gearPusher1 = 0;
+	public static int gearPusher2 = 0;
+	public static int gearTilter1 = 0;
+	public static int gearTilter2 = 0;
 	// we will figure this out later i gues....
 	
 }
