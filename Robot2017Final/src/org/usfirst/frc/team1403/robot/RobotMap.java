@@ -54,7 +54,10 @@ public class RobotMap {
 	public static int intakeRoller = 0;
 	
 	//gear pusher ports
-	public static int gearPusher = 0;
+	public static int gearPusher1 = 0;
+	public static int gearPusher2 = 0;
+	public static int gearTilter1 = 0;
+	public static int gearTilter2 = 0;
 	// we will figure this out later i gues....
 	
 }

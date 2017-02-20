@@ -7,10 +7,14 @@ import org.usfirst.frc.team1403.robot.commands.FollowPath;
 import org.usfirst.frc.team1403.robot.commands.LoadBall;
 import org.usfirst.frc.team1403.robot.commands.MakeGearHolderFront;
 import org.usfirst.frc.team1403.robot.commands.PushGearOut;
+import org.usfirst.frc.team1403.robot.commands.PusherOff;
 import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
 import org.usfirst.frc.team1403.robot.commands.RollersIn;
 import org.usfirst.frc.team1403.robot.commands.RollersOut;
 import org.usfirst.frc.team1403.robot.commands.Shoot;
+import org.usfirst.frc.team1403.robot.commands.TilterOff;
+import org.usfirst.frc.team1403.robot.commands.TilterOut;
+import org.usfirst.frc.team1403.robot.commands.TilterStraight;
 import org.usfirst.frc.team1403.robot.commands.VoltageAllSteps;
 
 import CougarLibrary.JoystickAnalogButton;
@@ -108,7 +112,7 @@ public class OI {
 		
 		djoyX.whileHeld(new DriveWithButtonFast());
 		//If MakeGearHolderFront is activated, the robot will drive in reverse
-		//djoyL.whileHeld(new MakeGearHolderFront());
+		//....djoyL.whileHeld(new MakeGearHolderFront());
 		djoyB.whileHeld(new DriveWithButton());
 		
 		ojoyRT.whileHeld(new Shoot());
@@ -121,6 +125,13 @@ public class OI {
 	//	ojoyStart.whenreleased(new )
 		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 		djoyY.whileHeld(new DriveWithOneJoystick());
+		
+		tjoyY.whenPressed(new PushGearOut());
+		tjoyA.whenPressed(new RetractGearPusher());
+		tjoyB.whenPressed(new PusherOff());
+		tjoyL.whenPressed(new TilterOut());
+		tjoyR.whenPressed(new TilterStraight());
+		tjoyX.whenPressed(new TilterOff());
 	
 	}
 }
