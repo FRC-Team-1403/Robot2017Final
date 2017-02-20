@@ -7,11 +7,12 @@ import org.usfirst.frc.team1403.robot.commands.FollowPath;
 import org.usfirst.frc.team1403.robot.commands.LoadBall;
 import org.usfirst.frc.team1403.robot.commands.MakeGearHolderFront;
 import org.usfirst.frc.team1403.robot.commands.PushGearOut;
-import org.usfirst.frc.team1403.robot.commands.PusherOff;
 import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
 import org.usfirst.frc.team1403.robot.commands.RollersIn;
 import org.usfirst.frc.team1403.robot.commands.RollersOut;
 import org.usfirst.frc.team1403.robot.commands.Shoot;
+import org.usfirst.frc.team1403.robot.commands.VisionAimAssist;
+import org.usfirst.frc.team1403.robot.commands.PusherOff;
 import org.usfirst.frc.team1403.robot.commands.TilterOff;
 import org.usfirst.frc.team1403.robot.commands.TilterOut;
 import org.usfirst.frc.team1403.robot.commands.TilterStraight;
@@ -21,7 +22,7 @@ import CougarLibrary.JoystickAnalogButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+//TEST TEST TEST TEST TEST
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -87,6 +88,7 @@ public class OI {
 	public JoystickButton ojoyRJB = new JoystickButton(ojoy, 10);
 	public JoystickAnalogButton ojoyLT = new JoystickAnalogButton(ojoy,2,0.5);
 	public JoystickAnalogButton ojoyRT = new JoystickAnalogButton(ojoy,3,0.5);
+
 	
 	//tjoy is for testing purposes
 	//bind all the basic functionality of all the subsystems except the drive train to here
@@ -112,8 +114,9 @@ public class OI {
 		
 		djoyX.whileHeld(new DriveWithButtonFast());
 		//If MakeGearHolderFront is activated, the robot will drive in reverse
-		//....djoyL.whileHeld(new MakeGearHolderFront());
+	//	djoyL.whileHeld(new MakeGearHolderFront());
 		djoyB.whileHeld(new DriveWithButton());
+		djoyRT.whileHeld(new VisionAimAssist());
 		
 		ojoyRT.whileHeld(new Shoot());
 		ojoyA.whileHeld(new RollersOut());
@@ -122,7 +125,7 @@ public class OI {
 		ojoyLT.whileHeld(new RollersIn());
 		ojoyLJB.whenPressed(new LoadBall());
 		ojoyStart.whileHeld(new VoltageAllSteps());
-	//	ojoyStart.whenreleased(new )
+		
 		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 		djoyY.whileHeld(new DriveWithOneJoystick());
 		

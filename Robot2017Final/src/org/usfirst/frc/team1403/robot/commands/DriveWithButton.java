@@ -5,9 +5,6 @@ import org.usfirst.frc.team1403.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class DriveWithButton extends Command {
 
     public DriveWithButton() {
@@ -23,11 +20,8 @@ public class DriveWithButton extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//System.out.println("hi");
-    	if (Robot.driveTrain.isReversed) {
-    		Robot.driveTrain.setLeftRightPower(0.1, 0.1);
-    	}
-    	if(Robot.oi.djoy.getRawButton(5))
-    	{
+    
+    	if (Robot.oi.djoy.getRawButton(5)) {
     		Robot.driveTrain.isReversed = true;
     	}
     	else {
@@ -44,6 +38,7 @@ public class DriveWithButton extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveTrain.setLeftRightPower(0,0);
     }
 
     // Called when another command which requires one or more of the same
@@ -52,3 +47,5 @@ public class DriveWithButton extends Command {
     	Robot.driveTrain.setLeftRightPower(0,0);
     }
 }
+
+
