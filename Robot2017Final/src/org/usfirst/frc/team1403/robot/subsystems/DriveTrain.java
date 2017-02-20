@@ -7,14 +7,11 @@ import org.usfirst.frc.team1403.robot.commands.DriveWithJoystick;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
+
 public class DriveTrain extends Subsystem {
 
     // Put methods for controlling this subsystem
@@ -27,6 +24,8 @@ public class DriveTrain extends Subsystem {
     public Encoder leftEncoder, rightEncoder;
     
     public AnalogGyro gyro;
+    
+    public AnalogInput infra;
     
     //used to change setLeftRightPower
     private boolean isReversed;
@@ -43,6 +42,7 @@ public class DriveTrain extends Subsystem {
     	//leftEncoder = new Encoder(RobotMap.leftEncoder1, RobotMap.leftEncoder2);
     	//rightEncoder = new Encoder(RobotMap.rightEncoder1, RobotMap.rightEncoder2);
     	gyro = new AnalogGyro(RobotMap.gyro);
+    	infra = new AnalogInput(1);
     	
     	//Set the distance per pulse as the feet per tick ratio in order to use feet for all motion mapping calculations
     	//leftEncoder.setDistancePerPulse(RobotMap.feetPerTick);

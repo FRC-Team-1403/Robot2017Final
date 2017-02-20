@@ -11,6 +11,7 @@ import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
 import org.usfirst.frc.team1403.robot.commands.RollersIn;
 import org.usfirst.frc.team1403.robot.commands.RollersOut;
 import org.usfirst.frc.team1403.robot.commands.Shoot;
+import org.usfirst.frc.team1403.robot.commands.VisionAimAssist;
 
 import CougarLibrary.JoystickAnalogButton;
 import edu.wpi.first.wpilibj.Joystick;
@@ -107,8 +108,9 @@ public class OI {
 		
 		djoyX.whileHeld(new DriveWithButtonFast());
 		//If MakeGearHolderFront is activated, the robot will drive in reverse
-		djoyL.whileHeld(new MakeGearHolderFront());
+	//	djoyL.whileHeld(new MakeGearHolderFront());
 		djoyB.whileHeld(new DriveWithButton());
+		djoyR.whileHeld(new VisionAimAssist());
 		
 		ojoyRT.whileHeld(new Shoot());
 		ojoyA.whileHeld(new RollersOut());

@@ -36,6 +36,10 @@ public class Robot extends IterativeRobot {
 	public static FlyWheel shooter;
 	public static Feeder feeder;
 	public static OI oi;
+	public static double x,h,irs,bottomLeg,dC,rS,hpN,totalInchHeight,nA,curve;
+	public static double currentAngle,totalInchWidth,diffConversion,w,hd2,coor;
+	public static double hypotenuse,subtracted,autoGyro,neededAngle;
+	public static double angle,leftC,inv,turn,autodist,inchRotation;
 	
 	public static Path straightTestPath;
 	
@@ -96,30 +100,31 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
-
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
-	 */
 	@Override
 	public void autonomousInit() {
 		//autonomousCommand = chooser.getSelected();
-		autonomousCommand = new DriveWithJoystick();
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
+		
+		driveTrain.gyro.reset();
+		turn = Math.atan(Math.abs(autodist/diffConversion))*180/Math.PI;
+		neededAngle = 90-turn;
+		inchRotation = (3.93/(8*Math.PI));
+		Robot.driveTrain.leftEncoder.reset();
+		Robot.driveTrain.rightEncoder.reset();
+		x = SmartDashboard.getNumber("difference", 321);
+		w = SmartDashboard.getNumber("width", 321);
+		h = SmartDashboard.getNumber("height", 241);
+		totalInchHeight = 1200/h; //conversion of Robot.x to inches from starting autonomous position
+		totalInchWidth = 640/w;
+		autodist = 52; //distance in inches
+		diffConversion = (Math.abs((x*totalInchWidth)/320))-6.5;
+		dC = (Math.abs((x*totalInchWidth)/320))+2;
+		hypotenuse = Math.sqrt((Math.pow(diffConversion, 2))+(Math.pow(autodist, 2)));
+		hpN = Math.sqrt((Math.pow(dC, 2))+(Math.pow(autodist, 2)));
+		curve = Math.atan(Math.abs(autodist/dC))*180/Math.PI;
+		nA = 90-curve;
 
 		// schedule the autonomous command (example)
+		autonomousCommand = new DriveWithJoystick();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		
@@ -131,6 +136,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		leftC = SmartDashboard.getNumber("x value", 321);
+		angle = Robot.driveTrain.gyro.getAngle();
+		irs = Robot.driveTrain.infra.getValue();
+		inv = 60.374*Math.pow(Robot.driveTrain.infra.getValue()/1000, -1.1068);
+		autoGyro = driveTrain.gyro.getAngle();
+		subtracted = Math.abs(neededAngle) - Math.abs(angle);
+		rS = Math.abs(angle-nA);
 		Scheduler.getInstance().run();
 	}
 
@@ -142,6 +154,9 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		Robot.driveTrain.gyro.reset();
+		Robot.driveTrain.leftEncoder.reset();
+		Robot.driveTrain.leftEncoder.reset();
 	}
 
 	/**
@@ -151,7 +166,26 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		
 		Scheduler.getInstance().run();
-		
+		x = SmartDashboard.getNumber("difference", 321);
+		w = SmartDashboard.getNumber("width", 321);
+		h = SmartDashboard.getNumber("height", 241);
+		leftC = SmartDashboard.getNumber("x value", 321);
+	//	hd2 = SmartDashboard.getNumber("horizontal distance", 321);
+		angle = Robot.driveTrain.gyro.getAngle();
+		irs = Robot.driveTrain.infra.getValue();
+		inv = 60.374*Math.pow(Robot.driveTrain.infra.getValue()/1000, -1.1068);
+		//IR units to cm
+	    	SmartDashboard.putDouble("testX", x);
+	    totalInchHeight = 1200/h; //conversion of Robot.x to inches from starting autonomous position
+	    totalInchWidth = 640/w;
+	    diffConversion = (x*totalInchWidth)/320;
+	//  System.out.println(diffConversion);
+	//  System.out.println("Robot.turn = " + turn);
+	    System.out.println("Infrared value = " + irs);
+	    autodist = 70; //distance in inches
+	    turn = Math.atan(Math.abs(autodist/diffConversion))*180/Math.PI;
+	    inchRotation = (256/(6*Math.PI)); //equals inch using encoder
+	    hypotenuse = Math.sqrt((Math.pow(diffConversion, 2))+(Math.pow(autodist, 2)));
 		
 	}
 
