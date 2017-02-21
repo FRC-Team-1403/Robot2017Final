@@ -11,7 +11,7 @@ public class TilterOff extends Command {
 
     public TilterOff() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.gearPusher);
+   //(Robot.gearPusher);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class TilterOff extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearPusher.tilterOff();
+   // 	Robot.gearPusher.tilterOff();
     }
 
     // Make this return true when this Command no longer needs to run execute()

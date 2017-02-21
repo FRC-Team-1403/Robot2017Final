@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1403.robot;
 
+import org.usfirst.frc.team1403.robot.commands.CANPowerUp;
 import org.usfirst.frc.team1403.robot.commands.DriveWithButton;
 import org.usfirst.frc.team1403.robot.commands.DriveWithButtonFast;
 import org.usfirst.frc.team1403.robot.commands.DriveWithOneJoystick;
@@ -11,6 +12,8 @@ import org.usfirst.frc.team1403.robot.commands.PushGearOut;
 import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
 import org.usfirst.frc.team1403.robot.commands.RollersIn;
 import org.usfirst.frc.team1403.robot.commands.RollersOut;
+import org.usfirst.frc.team1403.robot.commands.RunFeeders;
+import org.usfirst.frc.team1403.robot.commands.STOPMOTORSSHOOTERS;
 import org.usfirst.frc.team1403.robot.commands.Shoot;
 import org.usfirst.frc.team1403.robot.commands.VisionAimAssist;
 import org.usfirst.frc.team1403.robot.commands.PusherOff;
@@ -118,12 +121,17 @@ public class OI {
 		djoyLT.whileHeld(new VisionAimAssist());
 		
 		ojoyRT.whileHeld(new Shoot());
-		ojoyA.whileHeld(new RollersOut());
+		//ojoyRT.whenReleased(new STOPMOTORSSHOOTERS());
+		ojoyY.whileHeld(new RunFeeders());
+		ojoyB.whileHeld(new CANPowerUp());
+		
+		//ojoyA.whileHeld(new RollersOut());
 		ojoyR.whenPressed(new PushGearOut());
 		ojoyL.whenPressed(new RetractGearPusher());
 		ojoyLT.whileHeld(new RollersIn());
 		ojoyLJB.whenPressed(new LoadBall());
 		ojoyStart.whileHeld(new VoltageAllSteps());
+		ojoyBack.whileHeld(new RunFeeders());
 		
 		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 		djoyY.whileHeld(new DriveWithOneJoystick());

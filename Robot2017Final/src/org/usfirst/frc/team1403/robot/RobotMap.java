@@ -46,7 +46,7 @@ public class RobotMap {
 	public static double rotationsPerTick = 256;
 	
 	//feeder ports
-	public static int leftFeeder = 1;
+	public static int leftFeeder = 3;
 	public static int rightFeeder = 2;
 	//public static double feederTickConstant = 0;
 	

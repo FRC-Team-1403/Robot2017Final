@@ -31,7 +31,7 @@ public class Robot extends IterativeRobot {
 
 	public static DriveTrain driveTrain;
 	public static Intake intake;
-	public static GearPusher gearPusher;
+//	public static GearPusher gearPusher;
 	public static FlyWheel shooter;
 	public static Feeder feeder;
 	public static OI oi;
@@ -53,7 +53,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		driveTrain = new DriveTrain();
 		intake = new Intake();
-		gearPusher = new GearPusher();
+	//	gearPusher = new GearPusher();
 		shooter = new FlyWheel();
 		feeder = new Feeder();
 		
@@ -180,8 +180,8 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		Robot.driveTrain.gyro.reset();
-		Robot.driveTrain.leftEncoder.reset();
-		Robot.driveTrain.leftEncoder.reset();
+	//	Robot.driveTrain.leftEncoder.reset();
+	//	Robot.driveTrain.leftEncoder.reset();
 		Robot.driveTrain.isReversed = false;
 	}
 
@@ -192,7 +192,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		
 		Scheduler.getInstance().run();
-		x = SmartDashboard.getNumber("difference", 321);
+	/*	x = SmartDashboard.getNumber("difference", 321);
 		w = SmartDashboard.getNumber("width", 321);
 		h = SmartDashboard.getNumber("height", 241);
 		leftC = SmartDashboard.getNumber("x value", 321);
@@ -211,7 +211,7 @@ public class Robot extends IterativeRobot {
 	    autodist = 70; //distance in inches
 	    turn = Math.atan(Math.abs(autodist/diffConversion))*180/Math.PI;
 	    inchRotation = (256/(6*Math.PI)); //equals inch using encoder
-	    hypotenuse = Math.sqrt((Math.pow(diffConversion, 2))+(Math.pow(autodist, 2)));
+	    hypotenuse = Math.sqrt((Math.pow(diffConversion, 2))+(Math.pow(autodist, 2)));*/
 		
 	}
 

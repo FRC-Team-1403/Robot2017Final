@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Shoot extends CommandGroup {
 
     public Shoot() {
-    	
-    	addSequential(new PowerUpShooters());
-    	addParallel(new RunFeeders());
-    	addSequential(new MaintainShooters());
+    	addParallel(new CANPowerUp());
+    	addSequential(new RunFeeders());
+    
+    //	addSequential(new MaintainShooters());
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

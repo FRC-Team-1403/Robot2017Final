@@ -2,6 +2,7 @@ package org.usfirst.frc.team1403.robot.subsystems;
 
 
 import org.usfirst.frc.team1403.robot.RobotMap;
+import org.usfirst.frc.team1403.robot.commands.CalibrationCommand;
 
 import com.ctre.CANTalon;
 
@@ -22,6 +23,10 @@ public class FlyWheel extends Subsystem {
 	public FlyWheel() {
 		leftShooter = new CANTalon(RobotMap.leftFlyWheel);
 		rightShooter = new CANTalon(RobotMap.rightFlyWheel);
+		leftShooter.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		leftShooter.reverseSensor(true);
+
+		rightShooter.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 	}
 	
 	public void stop() {
@@ -40,7 +45,7 @@ public class FlyWheel extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand();
+     //   setDefaultCommand(new CalibrationCommand());
     }
     
     

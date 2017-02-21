@@ -24,8 +24,8 @@ public class CANPowerUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.leftShooter.set(-3304);
-    	Robot.shooter.leftShooter.set(3304);//'member that this is in RPM not ft/s lollllll
+    	Robot.shooter.leftShooter.set(3304);
+    	Robot.shooter.rightShooter.set(-3980);//'member that this is in RPM not ft/s lollllll
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,11 +35,19 @@ public class CANPowerUp extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	
+    	Robot.shooter.leftShooter.set(0);
+    	Robot.shooter.rightShooter.set(0);
+    	Robot.shooter.leftShooter.changeControlMode(CANTalon.TalonControlMode.Voltage);
+    	Robot.shooter.rightShooter.changeControlMode(CANTalon.TalonControlMode.Voltage);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	
+    	Robot.shooter.leftShooter.set(0);
+    	Robot.shooter.rightShooter.set(0);
     	Robot.shooter.leftShooter.changeControlMode(CANTalon.TalonControlMode.Voltage);
     	Robot.shooter.rightShooter.changeControlMode(CANTalon.TalonControlMode.Voltage);
     }

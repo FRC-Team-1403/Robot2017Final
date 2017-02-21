@@ -24,29 +24,29 @@ public class CalibrationCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	double leftYstick = Robot.oi.ojoy.getAxis(AxisType.kY);
-    	double motorOutput = Robot.shooter.leftShooter.getOutputVoltage() / Robot.shooter.leftShooter.getBusVoltage();
+    	double leftYstick = Robot.oi.ojoy.getRawAxis(1);
+    	double motorOutput = Robot.shooter.rightShooter.getOutputVoltage() / Robot.shooter.rightShooter.getBusVoltage();
     	/* prepare line to print */
 		System.out.println("\tout:");
 		System.out.println(motorOutput);
 		System.out.println("\tspd:");
-		System.out.println(Robot.shooter.leftShooter.getSpeed());
+		System.out.println(Robot.shooter.rightShooter.getSpeed());
         
         if(Robot.oi.ojoy.getRawButton(1)){
         	/* Speed mode */
-        	double targetSpeed = leftYstick * 3704; /* 1500 RPM in either direction */
-        	Robot.shooter.leftShooter.changeControlMode(TalonControlMode.Speed);
-        	Robot.shooter.leftShooter.set(targetSpeed); /* 1500 RPM in either direction */
+        	double targetSpeed = -3982; /* 1500 RPM in either direction */
+        	Robot.shooter.rightShooter.changeControlMode(TalonControlMode.Speed);
+        	Robot.shooter.rightShooter.set(targetSpeed); /* 1500 RPM in either direction */
 
         	/* append more signals to print when in speed mode. */
           System.out.println("\terr:");
-            System.out.println(Robot.shooter.leftShooter.getClosedLoopError());
+            System.out.println(Robot.shooter.rightShooter.getClosedLoopError());
             System.out.println("\ttrg:");
             System.out.println(targetSpeed);
         } else {
         	/* Percent voltage mode */
-        	Robot.shooter.leftShooter.changeControlMode(TalonControlMode.PercentVbus);
-        	Robot.shooter.leftShooter.set(leftYstick);
+        	Robot.shooter.rightShooter.changeControlMode(TalonControlMode.PercentVbus);
+        	Robot.shooter.rightShooter.set(leftYstick);
         }
 
         
