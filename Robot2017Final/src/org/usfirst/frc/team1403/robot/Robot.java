@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 	public static double hypotenuse,subtracted,autoGyro,neededAngle;
 	public static double angle,leftC,inv,turn,autodist,inchRotation;
 	
-	public static Path straightTestPath;
+	public static Path straightTestPath, startToGearLeft, gearToAutoLineLeft, startToGearRight, gearToAutoLineRight;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -73,11 +73,35 @@ public class Robot extends IterativeRobot {
 		config.max_jerk = RobotMap.maxJerk; //TODO pick a value
 		config.dt = .02;
 		
-		WaypointSequence straightTestSequence = new WaypointSequence(5);
+		/*WaypointSequence straightTestSequence = new WaypointSequence(5);
 		straightTestSequence.addWaypoint(new Waypoint(0, 0, 0));
 		straightTestSequence.addWaypoint(new Waypoint(1, 0, 0));
 		straightTestSequence.addWaypoint(new Waypoint(6.427, 4.88, Math.PI/3));
-		straightTestPath = PathGenerator.makePath(straightTestSequence, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");
+		straightTestPath = PathGenerator.makePath(straightTestSequence, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");*/
+		
+		/*
+		WaypointSequence startToGearSequenceLeft = new WaypointSequence(5);
+		startToGearSequenceLeft.addWaypoint(new Waypoint(0, 0, 0));
+		startToGearSequenceLeft.addWaypoint(new Waypoint(4.927, -2.282, -Math.PI/3));
+		startToGearLeft = PathGenerator.makePath(startToGearSequenceLeft, config, RobotMap.wheelBaseWidthInFeet, "Start To Gear");
+		
+		WaypointSequence gearToAutoLineSequenceLeft = new WaypointSequence(5);
+		gearToAutoLineSequenceLeft.addWaypoint(new Waypoint(0, 0, 0));
+		gearToAutoLineSequenceLeft.addWaypoint(new Waypoint(3.33333, -2.291667, -Math.PI/3));
+		gearToAutoLineSequenceLeft.addWaypoint(new Waypoint(6.66666, -4.58333, -Math.PI/3));
+		gearToAutoLineLeft = PathGenerator.makePath(gearToAutoLineSequenceLeft, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");
+		
+		WaypointSequence startToGearSequenceRight = new WaypointSequence(5);
+		startToGearSequenceRight.addWaypoint(new Waypoint(0, 0, 0));
+		startToGearSequenceRight.addWaypoint(new Waypoint(4.927, 2.282, Math.PI/3));
+		startToGearRight = PathGenerator.makePath(startToGearSequenceRight, config, RobotMap.wheelBaseWidthInFeet, "Start To Gear");
+		
+		WaypointSequence gearToAutoLineSequenceRight = new WaypointSequence(5);
+		gearToAutoLineSequenceRight.addWaypoint(new Waypoint(0, 0, 0));
+		gearToAutoLineSequenceRight.addWaypoint(new Waypoint(3.33333, 2.291667, Math.PI/3));
+		gearToAutoLineSequenceRight.addWaypoint(new Waypoint(6.66666, 4.58333, Math.PI/3));
+		gearToAutoLineRight = PathGenerator.makePath(gearToAutoLineSequenceRight, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");
+		*/
 		
 		oi = new OI();
 		
@@ -124,6 +148,7 @@ public class Robot extends IterativeRobot {
 		nA = 90-curve;
 
 		// schedule the autonomous command (example)
+		//TODO motion mapping command group?
 		autonomousCommand = new DriveWithJoystick();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -157,6 +182,7 @@ public class Robot extends IterativeRobot {
 		Robot.driveTrain.gyro.reset();
 		Robot.driveTrain.leftEncoder.reset();
 		Robot.driveTrain.leftEncoder.reset();
+		Robot.driveTrain.isReversed = false;
 	}
 
 	/**
@@ -175,7 +201,7 @@ public class Robot extends IterativeRobot {
 		irs = Robot.driveTrain.infra.getValue();
 		inv = 60.374*Math.pow(Robot.driveTrain.infra.getValue()/1000, -1.1068);
 		//IR units to cm
-	    	SmartDashboard.putDouble("testX", x);
+	    	SmartDashboard.putNumber("testX", x);
 	    totalInchHeight = 1200/h; //conversion of Robot.x to inches from starting autonomous position
 	    totalInchWidth = 640/w;
 	    diffConversion = (x*totalInchWidth)/320;

@@ -4,6 +4,8 @@ import org.usfirst.frc.team1403.robot.commands.DriveWithButton;
 import org.usfirst.frc.team1403.robot.commands.DriveWithButtonFast;
 import org.usfirst.frc.team1403.robot.commands.DriveWithOneJoystick;
 import org.usfirst.frc.team1403.robot.commands.FollowPath;
+import org.usfirst.frc.team1403.robot.commands.GearAutoLeft;
+import org.usfirst.frc.team1403.robot.commands.GearAutoRight;
 import org.usfirst.frc.team1403.robot.commands.LoadBall;
 import org.usfirst.frc.team1403.robot.commands.PushGearOut;
 import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
@@ -132,6 +134,9 @@ public class OI {
 		tjoyL.whenPressed(new TilterOut());
 		tjoyR.whenPressed(new TilterStraight());
 		tjoyX.whenPressed(new TilterOff());
+		
+		tjoyBack.whenPressed(new GearAutoLeft());
+		tjoyStart.whenPressed(new GearAutoRight());
 	
 	}
 }
