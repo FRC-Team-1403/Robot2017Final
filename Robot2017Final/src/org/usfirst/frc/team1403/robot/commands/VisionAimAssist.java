@@ -25,11 +25,11 @@ public class VisionAimAssist extends Command {
     	SmartDashboard.putBoolean("Aligned", false);
     	
     	if (diff <= -75) {
-    		Robot.driveTrain.setLeftRightPower(Math.abs((diff+70)/100)*0.5, -Math.abs((diff+70)/100)*0.5);
+    		Robot.driveTrain.setLeftRightPower(Math.abs((Math.abs(diff)-70)/100)*0.5, -Math.abs(Math.abs(diff)-70)/100);
     	}
     		    	
        	if (diff >= -85){
-        	Robot.driveTrain.setLeftRightPower(-Math.abs((diff+70)/100)*0.5, Math.abs((diff+70)/100)*0.5);
+        	Robot.driveTrain.setLeftRightPower(-Math.abs(Math.abs(diff)-70)/100)*0.5, Math.abs(Math.abs(diff)-70)/100);
        	
        	}
     }
@@ -40,19 +40,13 @@ public class VisionAimAssist extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.motor4.set(0);
-    	Robot.driveTrain.motor5.set(0);
-    	Robot.driveTrain.motor6.set(0);
-    	Robot.driveTrain.motor7.set(0);
+    	Robot.driveTrain.setLeftRightPower(0, 0);
     	SmartDashboard.putBoolean("Aligned", true);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.motor4.set(0);
-    	Robot.driveTrain.motor5.set(0);
-    	Robot.driveTrain.motor6.set(0);
-    	Robot.driveTrain.motor7.set(0);
+    	Robot.driveTrain.setLeftRightPower(0, 0);
     }
 }
