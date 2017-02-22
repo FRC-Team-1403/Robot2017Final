@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import raspVision.raspInit;
 import trajectoryLib.trajectory.Path;
 import trajectoryLib.trajectory.PathGenerator;
 import trajectoryLib.trajectory.TrajectoryGenerator;
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 	public static FlyWheel shooter;
 	public static Feeder feeder;
 	public static OI oi;
+	public static raspInit rasp_init;
 	public static double x,h,irs,bottomLeg,dC,rS,hpN,totalInchHeight,nA,curve;
 	public static double currentAngle,totalInchWidth,diffConversion,w,hd2,coor;
 	public static double hypotenuse,subtracted,autoGyro,neededAngle;
@@ -56,6 +58,7 @@ public class Robot extends IterativeRobot {
 	//	gearPusher = new GearPusher();
 		shooter = new FlyWheel();
 		feeder = new Feeder();
+		rasp_init = new raspInit("C:/Users/jshah/plink", "\"pi_test\"");
 		
 		//initialize editable SmartDashboard numbers
 		SmartDashboard.putNumber("Left Power", 0);
@@ -117,7 +120,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		raspInit.release(rasp_init.p);
 	}
 
 	@Override

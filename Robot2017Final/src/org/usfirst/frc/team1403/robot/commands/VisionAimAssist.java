@@ -24,18 +24,18 @@ public class VisionAimAssist extends Command {
     	diff = SmartDashboard.getNumber("difference", 321);
     	SmartDashboard.putBoolean("Aligned", false);
     	
-    	if (diff <= -68) {
-    		Robot.driveTrain.setLeftRightPower(0.2, -0.2);
-    }
+    	if (diff <= -75) {
+    		Robot.driveTrain.setLeftRightPower(Math.abs((diff+70)/100)*0.5, -Math.abs((diff+70)/100)*0.5);
+    	}
     		    	
-       	if (diff >= -75){
-        	Robot.driveTrain.setLeftRightPower(-0.2, 0.2);
+       	if (diff >= -85){
+        	Robot.driveTrain.setLeftRightPower(-Math.abs((diff+70)/100)*0.5, Math.abs((diff+70)/100)*0.5);
+       	
        	}
     }
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return diff < -68 && diff > -75;
+        return diff < -75 && diff > -85;
     }
 
     // Called once after isFinished returns true

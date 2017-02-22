@@ -34,7 +34,7 @@ public class DriveWithButtonFast extends Command {
     	else {
     		Robot.driveTrain.isReversed = false;
     	}
-    	Robot.driveTrain.setLeftRightPower(1, 1);
+    	Robot.driveTrain.setLeftRightPower(0.2, 0.2);
     }
 
     // Make this return true when this Command no longer needs to run execute()
