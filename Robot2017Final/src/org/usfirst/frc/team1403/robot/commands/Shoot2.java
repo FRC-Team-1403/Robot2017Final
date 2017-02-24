@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Shoot2 extends Command {
-	double leftrpm = -3304;
-	double rightrpm = 3304;
+	double leftrpm = 3304;
+	double rightrpm = -3304;
 	double leftvalue = 0;
 	double rightvalue = 0;
 	double leftcurrentRate = 0;
@@ -24,7 +24,8 @@ public class Shoot2 extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.leftShooter.set(-.65);
+    	Robot.shooter.leftShooter.set(.65);
+    	Robot.shooter.rightShooter.set(-.65);
     }
 
     // Called repeatedly when this Command is scheduled to run

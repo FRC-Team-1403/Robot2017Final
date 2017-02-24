@@ -7,6 +7,8 @@ import org.usfirst.frc.team1403.robot.commands.DriveWithOneJoystick;
 import org.usfirst.frc.team1403.robot.commands.FollowPath;
 import org.usfirst.frc.team1403.robot.commands.GearAutoLeft;
 import org.usfirst.frc.team1403.robot.commands.GearAutoRight;
+import org.usfirst.frc.team1403.robot.commands.HumanPlayer;
+import org.usfirst.frc.team1403.robot.commands.LetGo;
 import org.usfirst.frc.team1403.robot.commands.LoadBall;
 import org.usfirst.frc.team1403.robot.commands.PushGearOut;
 import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
@@ -20,6 +22,7 @@ import org.usfirst.frc.team1403.robot.commands.PusherOff;
 import org.usfirst.frc.team1403.robot.commands.TilterOff;
 import org.usfirst.frc.team1403.robot.commands.TilterOut;
 import org.usfirst.frc.team1403.robot.commands.TilterStraight;
+import org.usfirst.frc.team1403.robot.commands.Travel;
 import org.usfirst.frc.team1403.robot.commands.VoltageAllSteps;
 
 import CougarLibrary.JoystickAnalogButton;
@@ -126,11 +129,11 @@ public class OI {
 		ojoyB.whileHeld(new CANPowerUp());
 		
 		//ojoyA.whileHeld(new RollersOut());
-		ojoyR.whenPressed(new PushGearOut());
-		ojoyL.whenPressed(new RetractGearPusher());
+		ojoyR.whenPressed(new LetGo());
+		ojoyL.whileHeld(new HumanPlayer());
 		ojoyLT.whileHeld(new RollersIn());
 		ojoyLJB.whenPressed(new LoadBall());
-		ojoyStart.whileHeld(new VoltageAllSteps());
+		ojoyStart.whileHeld(new Travel());
 		ojoyBack.whileHeld(new RunFeeders());
 		
 		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));

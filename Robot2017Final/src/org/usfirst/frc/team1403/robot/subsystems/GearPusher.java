@@ -24,11 +24,11 @@ public class GearPusher extends Subsystem {
 	}
 	
 	public void push() {
-		pusher.set(DoubleSolenoid.Value.kForward);
+		pusher.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void retract() {
-		pusher.set(DoubleSolenoid.Value.kReverse);
+		pusher.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void off() {
@@ -36,11 +36,11 @@ public class GearPusher extends Subsystem {
 	}
 	
 	public void tilterOut() {
-		tilter.set(DoubleSolenoid.Value.kForward);
+		tilter.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void tilterStraight() {
-		tilter.set(DoubleSolenoid.Value.kReverse);
+		tilter.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void tilterOff() {

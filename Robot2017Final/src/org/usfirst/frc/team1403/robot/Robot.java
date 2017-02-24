@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 
 	public static DriveTrain driveTrain;
 	public static Intake intake;
-//	public static GearPusher gearPusher;
+	public static GearPusher gearPusher;
 	public static FlyWheel shooter;
 	public static Feeder feeder;
 	public static OI oi;
@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		driveTrain = new DriveTrain();
 		intake = new Intake();
-	//	gearPusher = new GearPusher();
+		gearPusher = new GearPusher();
 		shooter = new FlyWheel();
 		feeder = new Feeder();
 		rasp_init = new raspInit("C:/Users/jshah/plink", "\"pi_test\"");
@@ -120,7 +120,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		raspInit.release(rasp_init.p);
+	//	raspInit.release(rasp_init.p);
 	}
 
 	@Override
