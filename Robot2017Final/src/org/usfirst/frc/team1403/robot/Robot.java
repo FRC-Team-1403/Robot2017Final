@@ -41,6 +41,7 @@ public class Robot extends IterativeRobot {
 	public static double currentAngle,totalInchWidth,diffConversion,w,hd2,coor;
 	public static double hypotenuse,subtracted,autoGyro,neededAngle;
 	public static double angle,leftC,inv,turn,autodist,inchRotation;
+	public static raspInit raspinit;
 	
 	public static Path straightTestPath, startToGearLeft, gearToAutoLineLeft, startToGearRight, gearToAutoLineRight;
 	
@@ -58,7 +59,7 @@ public class Robot extends IterativeRobot {
 	//	gearPusher = new GearPusher();
 		shooter = new FlyWheel();
 		feeder = new Feeder();
-		rasp_init = new raspInit("C:/Users/jshah/plink", "\"pi_test\"");
+		rasp_init = new raspInit("C:/Users/jshah/plink", "\"pi_test\""); //editable for path, put plink and putty
 		
 		//initialize editable SmartDashboard numbers
 		SmartDashboard.putNumber("Left Power", 0);
@@ -115,12 +116,14 @@ public class Robot extends IterativeRobot {
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
+	 * 
+	 * 
 	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
 	 */
 	@Override
 	public void disabledInit() {
-		raspInit.release(rasp_init.p);
+		//raspInit.release(raspinit.p);
 	}
 
 	@Override
@@ -135,8 +138,8 @@ public class Robot extends IterativeRobot {
 		turn = Math.atan(Math.abs(autodist/diffConversion))*180/Math.PI;
 		neededAngle = 90-turn;
 		inchRotation = (3.93/(8*Math.PI));
-		Robot.driveTrain.leftEncoder.reset();
-		Robot.driveTrain.rightEncoder.reset();
+		//Robot.driveTrain.leftEncoder.reset();
+		//Robot.driveTrain.rightEncoder.reset();
 		x = SmartDashboard.getNumber("difference", 321);
 		w = SmartDashboard.getNumber("width", 321);
 		h = SmartDashboard.getNumber("height", 241);
@@ -180,6 +183,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+		rasp_init = new raspInit("C:/Users/jshah/plink", "\"pi_test\"");
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		Robot.driveTrain.gyro.reset();

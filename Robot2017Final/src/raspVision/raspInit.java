@@ -38,12 +38,7 @@ public class raspInit {
 			writer.close();
 
 			
-			Thread.sleep(10000);
-
-			Scanner scanner = new Scanner(reader);
-	        while (scanner.hasNextLine()) {
-	            System.out.println(scanner.nextLine());
-	        }
+			//Thread.sleep(10000);
 	       
 		} catch (Exception e) {
 			e.printStackTrace();

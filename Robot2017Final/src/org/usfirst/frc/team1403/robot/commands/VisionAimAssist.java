@@ -29,7 +29,7 @@ public class VisionAimAssist extends Command {
     	}
     		    	
        	if (diff >= -85){
-        	Robot.driveTrain.setLeftRightPower(-Math.abs(Math.abs(diff)-70)/100)*0.5, Math.abs(Math.abs(diff)-70)/100);
+        	Robot.driveTrain.setLeftRightPower((-Math.abs(Math.abs(diff)-70)/100)*0.5, Math.abs(Math.abs(diff)-70)/100);
        	
        	}
     }
