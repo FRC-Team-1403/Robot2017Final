@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1403.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -32,7 +33,7 @@ public class Robot extends IterativeRobot {
 
 	public static DriveTrain driveTrain;
 	public static Intake intake;
-//	public static GearPusher gearPusher;
+	public static GearPusher gearPusher;
 	public static FlyWheel shooter;
 	public static Feeder feeder;
 	public static OI oi;
@@ -54,13 +55,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		
+	//	CameraServer.getInstance().startAutomaticCapture();
 		driveTrain = new DriveTrain();
 		intake = new Intake();
-	//	gearPusher = new GearPusher();
+		gearPusher = new GearPusher();
 		shooter = new FlyWheel();
 		feeder = new Feeder();
-		rasp_init = new raspInit("C:/Users/jshah/plink", "\"pi_test\""); //editable for path, put plink and putty
-		
+		//rasp_init = new raspInit("C:/Users/team1403/plink", "\"pi_test\""); //editable for path, put plink and putty
+		//
 		//initialize editable SmartDashboard numbers
 		SmartDashboard.putNumber("Left Power", 0);
 		SmartDashboard.putNumber("Right Power", 0);
@@ -76,19 +79,20 @@ public class Robot extends IterativeRobot {
 		config.max_acc = RobotMap.maxAcceleration;
 		config.max_jerk = RobotMap.maxJerk; //TODO pick a value
 		config.dt = .02;
-		
+		  //Robot.shooter.rightShooter.reverseSensor(true);
+		 // Robot.shooter.rightShooter.reverseOutput(false);
 		/*WaypointSequence straightTestSequence = new WaypointSequence(5);
 		straightTestSequence.addWaypoint(new Waypoint(0, 0, 0));
 		straightTestSequence.addWaypoint(new Waypoint(1, 0, 0));
 		straightTestSequence.addWaypoint(new Waypoint(6.427, 4.88, Math.PI/3));
 		straightTestPath = PathGenerator.makePath(straightTestSequence, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");*/
 		
-		/*
+		
 		WaypointSequence startToGearSequenceLeft = new WaypointSequence(5);
 		startToGearSequenceLeft.addWaypoint(new Waypoint(0, 0, 0));
 		startToGearSequenceLeft.addWaypoint(new Waypoint(4.927, -2.282, -Math.PI/3));
 		startToGearLeft = PathGenerator.makePath(startToGearSequenceLeft, config, RobotMap.wheelBaseWidthInFeet, "Start To Gear");
-		
+		/*
 		WaypointSequence gearToAutoLineSequenceLeft = new WaypointSequence(5);
 		gearToAutoLineSequenceLeft.addWaypoint(new Waypoint(0, 0, 0));
 		gearToAutoLineSequenceLeft.addWaypoint(new Waypoint(3.33333, -2.291667, -Math.PI/3));
@@ -155,7 +159,7 @@ public class Robot extends IterativeRobot {
 
 		// schedule the autonomous command (example)
 		//TODO motion mapping command group?
-		autonomousCommand = new DriveWithJoystick();
+		autonomousCommand = new FollowPath(startToGearLeft);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		
@@ -197,7 +201,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		
+		SmartDashboard.putNumber("LeftRPM", Robot.shooter.getLeftRPM()/(6*Math.PI));
+		SmartDashboard.putNumber("RightRPM", Robot.shooter.getRightRPM()/(6*Math.PI));
 		Scheduler.getInstance().run();
 	/*	x = SmartDashboard.getNumber("difference", 321);
 		w = SmartDashboard.getNumber("width", 321);

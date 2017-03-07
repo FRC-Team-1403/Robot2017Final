@@ -6,6 +6,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -30,11 +31,13 @@ public class CalibrationCommand extends Command {
 		System.out.println("\tout:");
 		System.out.println(motorOutput);
 		System.out.println("\tspd:");
-		System.out.println(Robot.shooter.rightShooter.getSpeed());
-        
+		SmartDashboard.putNumber("speedCALILEFT", Robot.shooter.getLeftRPM());
+		SmartDashboard.putNumber("speedCALIRIGHT", Robot.shooter.getRightRPM());
+		
+		Robot.shooter.rightShooter.setF(0.361965014);
         if(Robot.oi.ojoy.getRawButton(1)){
         	/* Speed mode */
-        	double targetSpeed = -3982; /* 1500 RPM in either direction */
+        	double targetSpeed = 3000; /* 1500 RPM in either direction */
         	Robot.shooter.rightShooter.changeControlMode(TalonControlMode.Speed);
         	Robot.shooter.rightShooter.set(targetSpeed); /* 1500 RPM in either direction */
 

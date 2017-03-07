@@ -24,7 +24,7 @@ public class FlyWheel extends Subsystem {
 		leftShooter = new CANTalon(RobotMap.leftFlyWheel);
 		rightShooter = new CANTalon(RobotMap.rightFlyWheel);
 		leftShooter.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		leftShooter.reverseSensor(true);
+		rightShooter.reverseSensor(true);
 
 		rightShooter.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 	}
@@ -36,16 +36,16 @@ public class FlyWheel extends Subsystem {
 	
 	//TODO make sure getAnalogInVelocity works
 	public double getLeftRPM() {
-		return leftShooter.getEncVelocity() * RobotMap.rotationsPerTick;
+		return leftShooter.getSpeed();
 	}
 	
 	public double getRightRPM() {
-		return rightShooter.getEncVelocity() * RobotMap.rotationsPerTick;
+		return rightShooter.getSpeed();
 	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-     //   setDefaultCommand(new CalibrationCommand());
+        setDefaultCommand(new CalibrationCommand());
     }
     
     

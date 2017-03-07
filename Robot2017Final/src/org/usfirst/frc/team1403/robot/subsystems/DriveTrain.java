@@ -68,16 +68,45 @@ public class DriveTrain extends Subsystem {
     public void setLeftRightPower(double leftPower, double rightPower)
     {
 	   if(!isReversed){
+		   if(Math.abs(leftPower)>0.10){
 		   motor4.set(-leftPower);
 		   motor5.set(-leftPower);
+		 
+		   }
+		   else{
+			   motor4.set(0);
+			   motor5.set(0);
+			   
+		   }
+		   if(Math.abs(rightPower)>0.10){
 		   motor6.set(rightPower);
 		   motor7.set(rightPower);
+		   }
+		   else{
+			   motor6.set(0);
+			   motor7.set(0);
+			   
+		   }
 	   }
 	   else {
-		   motor6.set(-leftPower);
-		   motor7.set(-leftPower);
-		   motor4.set(rightPower);
-		   motor5.set(rightPower);
+		   if(Math.abs(leftPower)>0.10){
+		   motor4.set(leftPower);
+		   motor5.set(leftPower);
+		   }
+		   else{
+			   motor4.set(0);
+			   motor5.set(0);
+			   
+		   }
+		   if(Math.abs(rightPower)>0.10){
+		   motor6.set(-rightPower);
+		   motor7.set(-rightPower);
+		   }
+		   else{
+			   motor6.set(0);
+			   motor7.set(0);
+			   
+		   }
 	   }
 	   
     }
@@ -88,16 +117,45 @@ public class DriveTrain extends Subsystem {
     public void setLeftRightPower(double leftPower, double rightPower, double multiplier)
     {
 	   if(!isReversed){
+		   if(Math.abs(leftPower)>0.10){
 		   motor4.set(-leftPower*multiplier);
 		   motor5.set(-leftPower*multiplier);
+		   }
+		   else{
+			   motor4.set(0);
+			   motor5.set(0);
+			   
+		   }
+		   if(Math.abs(rightPower)>0.10){
 		   motor6.set(rightPower*multiplier);
 		   motor7.set(rightPower*multiplier);
+		   }
+		   
+		   else{
+			   motor6.set(0);
+			   motor7.set(0);
+			   
+		   }
 	   }
 	   else {
-		   motor6.set(-leftPower*multiplier);
-		   motor7.set(-leftPower*multiplier);
-		   motor4.set(rightPower*multiplier);
-		   motor5.set(rightPower*multiplier);
+		   if(Math.abs(leftPower)>0.10){
+		   motor4.set(leftPower*multiplier);
+		   motor5.set(leftPower*multiplier);
+		   }
+		   else{
+			   motor4.set(0);
+			   motor5.set(0);
+			   
+		   }
+		   if(Math.abs(rightPower)>0.10){
+		   motor6.set(-rightPower*multiplier);
+		   motor7.set(-rightPower*multiplier);
+		   }
+		   else{
+			   motor6.set(0);
+			   motor7.set(0);
+			   
+		   }
 	   }
 	   
     }

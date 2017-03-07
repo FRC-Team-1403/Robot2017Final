@@ -15,8 +15,8 @@ public class GearPusher extends Subsystem {
     // here. Call these from Commands.
 	
 	//TODO make sure the boolean for the solenoid is correct
-	DoubleSolenoid pusher;
-	DoubleSolenoid tilter;
+	public DoubleSolenoid pusher;
+	public DoubleSolenoid tilter;
 	
 	public GearPusher() {
 		pusher = new DoubleSolenoid(RobotMap.gearPusher1, RobotMap.gearPusher2);
