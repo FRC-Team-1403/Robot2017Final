@@ -165,7 +165,7 @@ public class Robot extends IterativeRobot {
 
 		// schedule the autonomous command (example)
 		//TODO motion mapping command group?
-		autonomousCommand = new FollowPath(startToGearLeft);
+		autonomousCommand = new DriveWithJoystick();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		

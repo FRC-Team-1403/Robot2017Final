@@ -4,9 +4,7 @@ import org.usfirst.frc.team1403.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
+
 public class GearAutoLeft extends CommandGroup {
 
     public GearAutoLeft() {
