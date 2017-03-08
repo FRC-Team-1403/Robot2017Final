@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1403.robot;
 
 import org.usfirst.frc.team1403.robot.commands.CANPowerUp;
-import org.usfirst.frc.team1403.robot.commands.DriveWithButton;
+import org.usfirst.frc.team1403.robot.commands.*;
 import org.usfirst.frc.team1403.robot.commands.DriveWithButtonFast;
 import org.usfirst.frc.team1403.robot.commands.DriveWithOneJoystick;
 import org.usfirst.frc.team1403.robot.commands.EBrake;
@@ -10,6 +10,7 @@ import org.usfirst.frc.team1403.robot.commands.GearAutoLeft;
 import org.usfirst.frc.team1403.robot.commands.GearAutoRight;
 import org.usfirst.frc.team1403.robot.commands.LoadBall;
 import org.usfirst.frc.team1403.robot.commands.LoadGear;
+import org.usfirst.frc.team1403.robot.commands.PositiveClimb;
 import org.usfirst.frc.team1403.robot.commands.PushGearOut;
 import org.usfirst.frc.team1403.robot.commands.RetractGearPusher;
 import org.usfirst.frc.team1403.robot.commands.RollersIn;
@@ -22,6 +23,7 @@ import org.usfirst.frc.team1403.robot.commands.PusherOff;
 import org.usfirst.frc.team1403.robot.commands.TilterOff;
 import org.usfirst.frc.team1403.robot.commands.TilterOut;
 import org.usfirst.frc.team1403.robot.commands.TilterStraight;
+import org.usfirst.frc.team1403.robot.commands.TurnOnTheLight;
 import org.usfirst.frc.team1403.robot.commands.VoltageAllSteps;
 import org.usfirst.frc.team1403.robot.commands.VoltageHack;
 
@@ -133,9 +135,11 @@ public class OI {
 		ojoyR.whenPressed(new PushGearOut());
 		ojoyL.whenPressed(new LoadGear());
 		ojoyLT.whileHeld(new RollersIn());
-		ojoyLJB.whenPressed(new LoadBall());
+		ojoyA.whenPressed(new LoadBall());
+		ojoyLJB.whenPressed(new TurnOnTheLight());
+		ojoyRJB.whenPressed(new TurnOffTheLight());
 		ojoyStart.whileHeld(new TilterStraight());
-		ojoyBack.whileHeld(new RunFeeders());
+		ojoyBack.whileHeld(new PositiveClimb());
 		
 		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 		djoyY.whileHeld(new DriveWithOneJoystick());

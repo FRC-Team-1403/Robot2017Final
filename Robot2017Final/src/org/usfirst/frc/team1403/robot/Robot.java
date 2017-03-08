@@ -16,11 +16,13 @@ import trajectoryLib.trajectory.WaypointSequence.Waypoint;
 
 import org.usfirst.frc.team1403.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team1403.robot.commands.FollowPath;
+import org.usfirst.frc.team1403.robot.subsystems.Climber;
 import org.usfirst.frc.team1403.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1403.robot.subsystems.Feeder;
 import org.usfirst.frc.team1403.robot.subsystems.FlyWheel;
 import org.usfirst.frc.team1403.robot.subsystems.GearPusher;
 import org.usfirst.frc.team1403.robot.subsystems.Intake;
+import org.usfirst.frc.team1403.robot.subsystems.Light;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -43,6 +45,8 @@ public class Robot extends IterativeRobot {
 	public static double hypotenuse,subtracted,autoGyro,neededAngle;
 	public static double angle,leftC,inv,turn,autodist,inchRotation;
 	public static raspInit raspinit;
+	public static Climber climb;
+	public static Light light;
 	
 	public static Path straightTestPath, startToGearLeft, gearToAutoLineLeft, startToGearRight, gearToAutoLineRight;
 	
@@ -57,12 +61,14 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		
 	//	CameraServer.getInstance().startAutomaticCapture();
+		light = new Light();
 		driveTrain = new DriveTrain();
 		intake = new Intake();
 		gearPusher = new GearPusher();
 		shooter = new FlyWheel();
 		feeder = new Feeder();
-		//rasp_init = new raspInit("C:/Users/team1403/plink", "\"pi_test\""); //editable for path, put plink and putty
+		climb = new Climber();
+		//rasp_init = new raspInit("ssh root@raspberrypi.local"); //editable for path, put plink and putty
 		//
 		//initialize editable SmartDashboard numbers
 		SmartDashboard.putNumber("Left Power", 0);
@@ -187,7 +193,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		rasp_init = new raspInit("C:/Users/jshah/plink", "\"pi_test\"");
+		rasp_init = new raspInit("ssh @raspberrypi.local");
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		Robot.driveTrain.gyro.reset();

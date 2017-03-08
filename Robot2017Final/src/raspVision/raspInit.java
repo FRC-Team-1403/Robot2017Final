@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 public class raspInit {
 	public Process p;
-	public raspInit(String plink_path, String run_config) {
+	public raspInit(String command_c) {
 
 		InputStream std;
 		OutputStream out;
 
 		try {
-			String[] command = new String[] { plink_path, "-load", run_config };
+			String[] command = new String[] { command_c };
 
 			p = new ProcessBuilder(command).start();
 

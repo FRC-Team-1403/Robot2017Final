@@ -63,7 +63,32 @@ public class DriveTrain extends Subsystem {
     public void makeIntakeFront() {
     	isReversed = true;
     }
-    
+    public void motionMappingSetLeftRightPower(double leftPower, double rightPower){
+    	if(!isReversed){
+ 		  // if(Math.abs(leftPower)>0.10){
+ 		   motor4.set(-leftPower);
+ 		   motor5.set(-leftPower);
+ 		 
+ 		
+ 		   motor6.set(rightPower);
+ 		   motor7.set(rightPower);
+ 		
+ 	   }
+ 	   else {
+ 		  
+ 		   motor4.set(leftPower);
+ 		   motor5.set(leftPower);
+ 		
+ 			  
+ 		   
+ 		  
+ 		   motor6.set(-rightPower);
+ 		   motor7.set(-rightPower);
+ 		 
+ 			
+ 	   }
+    	
+    }
   //do not set the motors directly; always use this method because it sets the motors differently based off of which side of the robot is considered the front
     public void setLeftRightPower(double leftPower, double rightPower)
     {
