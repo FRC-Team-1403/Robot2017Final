@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1403.robot.subsystems;
 
 import org.usfirst.frc.team1403.robot.Robot;
+import org.usfirst.frc.team1403.robot.RobotMap;
 import org.usfirst.frc.team1403.robot.commands.PositiveClimb;
 
 import com.ctre.CANTalon;
@@ -14,7 +15,7 @@ public class Climber extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public CANTalon climber = new CANTalon(11);
+	public CANTalon climber = new CANTalon(RobotMap.climber);
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new PositiveClimb());

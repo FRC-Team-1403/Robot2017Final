@@ -40,7 +40,7 @@ public class RobotMap {
 	public static int rightShooterEncoder1 = 0;
 	public static int rightShooterEncoder2 = 0;*/
 	
-	public static double leftshooterRPM = -3304;
+	public static double leftshooterRPM = -3304;// lol
 	public static double rightshooterRPM = 3304;
 	
 	public static double rotationsPerTick = 256;
@@ -59,5 +59,8 @@ public class RobotMap {
 	public static int gearTilter1 = 3;
 	public static int gearTilter2 = 4;
 	// we will figure this out later i gues....
+	
+	//climber ports
+	public static int climber = 8;
 	
 }

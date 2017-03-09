@@ -14,6 +14,7 @@ import trajectoryLib.trajectory.TrajectoryGenerator;
 import trajectoryLib.trajectory.WaypointSequence;
 import trajectoryLib.trajectory.WaypointSequence.Waypoint;
 
+import org.usfirst.frc.team1403.robot.commands.ClassicAuto;
 import org.usfirst.frc.team1403.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team1403.robot.commands.FollowPath;
 import org.usfirst.frc.team1403.robot.subsystems.Climber;
@@ -60,7 +61,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		
-	//	CameraServer.getInstance().startAutomaticCapture();
+		CameraServer.getInstance().startAutomaticCapture();
 		light = new Light();
 		driveTrain = new DriveTrain();
 		intake = new Intake();
@@ -117,11 +118,16 @@ public class Robot extends IterativeRobot {
 		gearToAutoLineRight = PathGenerator.makePath(gearToAutoLineSequenceRight, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");
 		*/
 		
-		oi = new OI();
+		
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+				// chooser.addObject("My Auto", new MyAutoCommand());
+				SmartDashboard.putData("Auto mode", chooser);
+		
+		//LAST FOR A REASON.......... DO NOT CHANGE!!!!!!!!!!!!!!!!!!!!!!!!
+		oi = new OI();
+		//I REPEAT... DO NOT CHANGE THIS AND DO NOT ADD ANYTHING AFTER THIS....
+		
 	}
 
 	/**
@@ -165,7 +171,7 @@ public class Robot extends IterativeRobot {
 
 		// schedule the autonomous command (example)
 		//TODO motion mapping command group?
-		autonomousCommand = new DriveWithJoystick();
+		autonomousCommand = new ClassicAuto();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		
