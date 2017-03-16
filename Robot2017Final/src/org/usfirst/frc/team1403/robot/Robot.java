@@ -35,22 +35,26 @@ import org.usfirst.frc.team1403.robot.subsystems.Light;
  */
 public class Robot extends IterativeRobot {
 
+	//declare variables for subsystems
 	public static DriveTrain driveTrain;
 	public static Intake intake;
 	public static GearPusher gearPusher;
 	public static FlyWheel shooter;
 	public static Feeder feeder;
+	public static Climber climb;
+	public static Light light;
 	public static OI oi;
+	
+	//declare variables for vision
 	public static raspInit rasp_init;
 	public static double x,h,irs,bottomLeg,dC,rS,hpN,totalInchHeight,nA,curve;
 	public static double currentAngle,totalInchWidth,diffConversion,w,hd2,coor;
 	public static double hypotenuse,subtracted,autoGyro,neededAngle;
 	public static double angle,leftC,inv,turn,autodist,inchRotation;
 	public static raspInit raspinit;
-	public static Climber climb;
-	public static Light light;
 	
-	public static Path straightTestPath, startToGearLeft, gearToAutoLineLeft, startToGearRight, gearToAutoLineRight;
+	//declare variables for motion mapping paths
+	//public static Path straightTestPath, startToGearLeft, gearToAutoLineLeft, startToGearRight, gearToAutoLineRight;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -61,7 +65,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		
+		//construct subsystems
 		CameraServer.getInstance().startAutomaticCapture();
 		light = new Light();
 		driveTrain = new DriveTrain();
@@ -95,12 +99,14 @@ public class Robot extends IterativeRobot {
 		straightTestSequence.addWaypoint(new Waypoint(6.427, 4.88, Math.PI/3));
 		straightTestPath = PathGenerator.makePath(straightTestSequence, config, RobotMap.wheelBaseWidthInFeet, "Straight Test");*/
 		
-		
+		//generate auto paths
+		//this runs when the code is first deployed or the RoboRIO first turns on
+		/*
 		WaypointSequence startToGearSequenceLeft = new WaypointSequence(5);
 		startToGearSequenceLeft.addWaypoint(new Waypoint(0, 0, 0));
 		startToGearSequenceLeft.addWaypoint(new Waypoint(4.927, -2.282, -Math.PI/3));
 		startToGearLeft = PathGenerator.makePath(startToGearSequenceLeft, config, RobotMap.wheelBaseWidthInFeet, "Start To Gear");
-		/*
+		
 		WaypointSequence gearToAutoLineSequenceLeft = new WaypointSequence(5);
 		gearToAutoLineSequenceLeft.addWaypoint(new Waypoint(0, 0, 0));
 		gearToAutoLineSequenceLeft.addWaypoint(new Waypoint(3.33333, -2.291667, -Math.PI/3));
@@ -129,6 +135,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		//I REPEAT... DO NOT CHANGE THIS AND DO NOT ADD ANYTHING AFTER THIS....
 		
+		//oi has to be constructed last because it contains references to other subsystems
+		//the code will have null pointers if oi is constructed before the other subsystems
 	}
 
 	/**
@@ -151,6 +159,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		//autonomousCommand = chooser.getSelected();
 		
+		//intialize all vision variables
 		driveTrain.gyro.reset();
 		turn = Math.atan(Math.abs(autodist/diffConversion))*180/Math.PI;
 		neededAngle = 90-turn;
@@ -184,6 +193,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		//this auto generated line is what constantly runs all scheduled commands throughout the game
+		Scheduler.getInstance().run();
+		
+		//update vision variables as autonomous runs
 		leftC = SmartDashboard.getNumber("x value", 321);
 		angle = Robot.driveTrain.gyro.getAngle();
 		irs = Robot.driveTrain.infra.getValue();
@@ -191,15 +204,12 @@ public class Robot extends IterativeRobot {
 		autoGyro = driveTrain.gyro.getAngle();
 		subtracted = Math.abs(neededAngle) - Math.abs(angle);
 		rS = Math.abs(angle-nA);
-		Scheduler.getInstance().run();
+		
 	}
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
+		
 		rasp_init = new raspInit("ssh @raspberrypi.local");
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
@@ -214,9 +224,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		//this auto generated line is what constantly runs all scheduled commands throughout the game
+		Scheduler.getInstance().run();
+		
+		//display the RPM of the shooters on the smart dashboard
 		SmartDashboard.putNumber("LeftRPM", Robot.shooter.getLeftRPM()/(6*Math.PI));
 		SmartDashboard.putNumber("RightRPM", Robot.shooter.getRightRPM()/(6*Math.PI));
-		Scheduler.getInstance().run();
+		
 	/*	x = SmartDashboard.getNumber("difference", 321);
 		w = SmartDashboard.getNumber("width", 321);
 		h = SmartDashboard.getNumber("height", 241);

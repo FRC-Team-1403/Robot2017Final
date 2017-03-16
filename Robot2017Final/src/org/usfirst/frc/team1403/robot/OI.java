@@ -38,32 +38,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	
-	
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
-
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
-
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
 	
 	//djoy is the driver's configuration at competition
 	public Joystick djoy = new Joystick(0);
@@ -119,17 +93,40 @@ public class OI {
 	
 	
 	public OI(){
-		//bind buttons to commands
+		/*
+		DRIVER
+		A: DriveWithButton: Hold to drive straight forward slowly
+		B: EBrake: Hold to stop the motors
+		X: DriveWithButtonFast: Hold to drive straight forward at full speed
+		Y: DriveWithOneJoystick: Hold to drive straight using the left joystick
+		L: Hold to swap the drive code so that the back of the robot is considered the front
+		R: Hold to drive at half speed
+		*/
 		
 		djoyX.whileHeld(new DriveWithButtonFast());
 		djoyA.whileHeld(new DriveWithButton());
-	//	djoyLT.whileHeld(new VisionAimAssist());
+		djoyY.whileHeld(new DriveWithOneJoystick());
+		djoyB.whileHeld(new EBrake());
+		//djoyLT.whileHeld(new VisionAimAssist());
+		//djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 		
+		/*
+		OPERATOR
+		A: LoadBall: move the feeders forward so that one ball goes into the shooter (hopefully)
+		B: EBrake: Hold to stop the motors
+		X: RollersOut: Run the intake outward to spit balls out
+		L: LoadGear: Put the gear holder in the position for receiving a gear from the loading station
+		R: PushGearOut: Push the gear onto the lift
+		LT: RollersIn: Run the intake inward to take balls in
+		LJB: TurnOnTheLight
+		RJB: TurnOffTheLight
+		Start: TilterStraight: Move the gear holder upright so that it can place a gear
+		Back: PositiveClimb: Run the climber
+		*/
 		ojoyRT.whileHeld(new Shoot());
 		//ojoyRT.whenReleased(new STOPMOTORSSHOOTERS());
 		ojoyY.whileHeld(new RunFeeders());
 		ojoyB.whileHeld(new EBrake());
-		djoyB.whileHeld(new EBrake());
 		
 		//ojoyA.whileHeld(new RollersOut());
 		ojoyR.whenPressed(new PushGearOut());
@@ -142,9 +139,9 @@ public class OI {
 		ojoyStart.whileHeld(new TilterStraight());
 		ojoyBack.whileHeld(new PositiveClimb());
 		
-	//	djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
-		djoyY.whileHeld(new DriveWithOneJoystick());
+	
 		
+		//testing the pneumatics
 		tjoyY.whenPressed(new PushGearOut());
 		tjoyA.whenPressed(new RetractGearPusher());
 		tjoyB.whenPressed(new PusherOff());
@@ -157,3 +154,30 @@ public class OI {
 	
 	}
 }
+
+////CREATING BUTTONS
+// One type of button is a joystick button which is any button on a
+//// joystick.
+// You create one by telling it which joystick it's on and which button
+// number it is.
+
+
+// There are a few additional built in buttons you can use. Additionally,
+// by subclassing Button you can create custom triggers and bind those to
+// commands the same as any other Button.
+
+//// TRIGGERING COMMANDS WITH BUTTONS
+// Once you have a button, it's trivial to bind it to a button in one of
+// three ways:
+
+// Start the command when the button is pressed and let it run the command
+// until it is finished as determined by it's isFinished method.
+// button.whenPressed(new ExampleCommand());
+
+// Run the command while the button is being held down and interrupt it once
+// the button is released.
+// button.whileHeld(new ExampleCommand());
+
+// Start the command when the button is released and let it run the command
+// until it is finished as determined by it's isFinished method.
+// button.whenReleased(new ExampleCommand());

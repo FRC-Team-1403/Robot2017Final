@@ -27,10 +27,10 @@ public class GearAutoRight extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new FollowPath(Robot.startToGearRight));
+    	/*addSequential(new FollowPath(Robot.startToGearRight));
     	//TODO put the vision commands here
     	Robot.driveTrain.isReversed = true;
     	addSequential(new FollowPath(Robot.gearToAutoLineRight));
-    	Robot.driveTrain.isReversed = false;
+    	Robot.driveTrain.isReversed = false;*/
     }
 }

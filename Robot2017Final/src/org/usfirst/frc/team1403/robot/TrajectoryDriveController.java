@@ -19,6 +19,7 @@ public class TrajectoryDriveController {
     init();
   }
   
+  //a constructor for configuring the trajectory followers
   public TrajectoryDriveController(double kV, double kA, double kP, double kTurn) {
 	  followerLeft.configure(kP, 0, 0, kV, kA);
 	  followerRight.configure(kP, 0, 0, kV, kA);
@@ -71,6 +72,7 @@ public class TrajectoryDriveController {
     return followerLeft.getCurrentSegment();
   }
   
+  //sets the motors based on the+
   public void update() {
     if (!enabled) {
       return ;
