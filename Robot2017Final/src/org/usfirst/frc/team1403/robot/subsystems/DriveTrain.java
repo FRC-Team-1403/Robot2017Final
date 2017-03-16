@@ -35,7 +35,7 @@ public class DriveTrain extends Subsystem {
     	motor4 = new CANTalon(4);
     	motor5 = new CANTalon(5);
     	motor6 = new CANTalon(6);
-    	motor7 = new CANTalon(7);
+    	motor7 = new CANTalon(7);//9
     	isReversed = false;
     	
     	//the encoders and gyro use the ports in robotmap
@@ -129,7 +129,7 @@ public class DriveTrain extends Subsystem {
 		   if(Math.abs(rightPower)>0.10){
 		   motor4.set(rightPower);
 		   motor5.set(rightPower);
-		   }
+		   }//glue
 		   else{
 			   motor4.set(0);
 			   motor5.set(0);

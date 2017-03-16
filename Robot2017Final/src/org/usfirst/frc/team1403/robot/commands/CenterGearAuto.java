@@ -8,8 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterGearAuto extends CommandGroup {
 
     public CenterGearAuto() {
-        addSequential(new DriveStraight(90/12.0));
+        addSequential(new MoveToPlaceGear(51.3/12.0));
         addSequential(new PushGearOutInAuto());
-        addSequential(new DriveStraight(-1.0));
+        addSequential(new DriveStraight(-2));
+
     }
 }

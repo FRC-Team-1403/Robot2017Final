@@ -13,7 +13,7 @@ public class PushGearOutInAuto extends Command {
     public PushGearOutInAuto() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.gearPusher);
-        setTimeout(2);
+        setTimeout(1);
     }
 
     // Called just before this Command runs the first time

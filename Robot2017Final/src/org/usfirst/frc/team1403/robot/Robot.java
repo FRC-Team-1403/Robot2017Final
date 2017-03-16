@@ -14,6 +14,7 @@ import trajectoryLib.trajectory.TrajectoryGenerator;
 import trajectoryLib.trajectory.WaypointSequence;
 import trajectoryLib.trajectory.WaypointSequence.Waypoint;
 
+import org.usfirst.frc.team1403.robot.commands.CenterGearAuto;
 import org.usfirst.frc.team1403.robot.commands.ClassicAuto;
 import org.usfirst.frc.team1403.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team1403.robot.commands.FollowPath;
@@ -171,7 +172,7 @@ public class Robot extends IterativeRobot {
 
 		// schedule the autonomous command (example)
 		//TODO motion mapping command group?
-		autonomousCommand = new ClassicAuto();
+		autonomousCommand = new CenterGearAuto();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		
