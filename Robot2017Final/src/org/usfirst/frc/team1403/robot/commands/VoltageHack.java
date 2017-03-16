@@ -5,7 +5,7 @@ import org.usfirst.frc.team1403.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *uses voltage compensation mode
  */
 public class VoltageHack extends Command {
 

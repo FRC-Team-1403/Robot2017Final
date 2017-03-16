@@ -5,7 +5,8 @@ import org.usfirst.frc.team1403.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *sends balls from feeders into shooters
+ *runs until the button is released
  */
 public class RunFeeders extends Command {
 

@@ -3,7 +3,7 @@ package org.usfirst.frc.team1403.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *does nothing right now
  */
 public class PowerUpShooters extends Command {
 

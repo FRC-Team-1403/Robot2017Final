@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ *used to for making TalonSRX velocity control mode work
+ *copied from CTRE GitHub
  */
 public class CalibrationCommand extends Command {
 

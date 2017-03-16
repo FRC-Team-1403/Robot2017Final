@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import trajectoryLib.trajectory.Path;
 
 /**
- *
+ *follows the motion mapping path passed through the constructor
  */
 public class FollowPath extends Command {
 

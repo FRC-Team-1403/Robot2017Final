@@ -5,7 +5,7 @@ import org.usfirst.frc.team1403.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *runs the feeders to send one ball into the shooters
  */
 public class LoadBall extends Command {
 

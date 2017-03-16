@@ -6,7 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ *default command for drive train
+ *sets left and right power based off of joysticks
+ *goes backward if the left bumper is held
+ *goes half speed if the right bumper is held
  */
 public class DriveWithJoystick extends Command {
 

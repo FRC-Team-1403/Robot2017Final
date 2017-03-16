@@ -72,7 +72,7 @@ public class TrajectoryDriveController {
     return followerLeft.getCurrentSegment();
   }
   
-  //sets the motors based on the+
+  //sets the motors based on the current state of the path
   public void update() {
     if (!enabled) {
       return ;

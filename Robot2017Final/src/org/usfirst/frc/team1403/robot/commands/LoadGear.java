@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ *puts the gear holder in position to get a gear
  */
 public class LoadGear extends CommandGroup {
 

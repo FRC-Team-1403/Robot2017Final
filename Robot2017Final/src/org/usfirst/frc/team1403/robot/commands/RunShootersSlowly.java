@@ -5,7 +5,7 @@ import org.usfirst.frc.team1403.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *run this when loading balls to prevent balls from jamming the shooter
  */
 public class RunShootersSlowly extends Command {
 //ojoyX.whileHeld(new RunShootersSlowly());

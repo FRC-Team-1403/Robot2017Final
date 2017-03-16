@@ -5,7 +5,7 @@ package org.usfirst.frc.team1403.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ *uses voltage compensation mode
  */
 public class Shoot extends CommandGroup {
 

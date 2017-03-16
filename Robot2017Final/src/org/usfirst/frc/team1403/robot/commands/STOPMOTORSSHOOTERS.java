@@ -7,7 +7,7 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *WTF IS THIS
  */
 public class STOPMOTORSSHOOTERS extends Command {
 

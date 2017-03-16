@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Feeder extends Subsystem {
 	
+	//this subsystem contains two rollers run by 775Pros which feed balls into the shooters
+	
 	//TODO make sure rollers move in the correct direction
 	public CANTalon leftFeeder;
 	public CANTalon rightFeeder;

@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    //intake pulls balls in from the ground
 	
 	public CANTalon roller;
 	

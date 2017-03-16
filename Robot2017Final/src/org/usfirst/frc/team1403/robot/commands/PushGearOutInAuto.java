@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *pushes the gear out then waits for 1 second before going to the next command
  */
 public class PushGearOutInAuto extends Command {
 

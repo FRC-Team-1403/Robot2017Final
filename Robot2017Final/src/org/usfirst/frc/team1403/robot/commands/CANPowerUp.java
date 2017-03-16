@@ -7,7 +7,7 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *doesn't work
  */
 public class CANPowerUp extends Command {
 

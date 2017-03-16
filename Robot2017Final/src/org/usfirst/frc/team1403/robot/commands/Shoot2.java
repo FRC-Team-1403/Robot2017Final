@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ *BANG BANG CANCER
  */
 public class Shoot2 extends Command {
 	double leftrpm = -3304;

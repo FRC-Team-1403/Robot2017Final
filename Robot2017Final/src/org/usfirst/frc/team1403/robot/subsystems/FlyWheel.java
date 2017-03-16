@@ -15,14 +15,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class FlyWheel extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    //this subsystem contains two separates flywheels (4 inch Coulson wheels powered by 775Pros)
+	
 	public CANTalon leftShooter;
 	public CANTalon rightShooter;
 	
 	public FlyWheel() {
+		//construct the shooters
 		leftShooter = new CANTalon(RobotMap.leftFlyWheel);
 		rightShooter = new CANTalon(RobotMap.rightFlyWheel);
+		
+		//both shooters shoot forward
+		//left shooter encoder is reversed
 		leftShooter.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		rightShooter.reverseSensor(true);
 

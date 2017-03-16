@@ -5,7 +5,8 @@ import org.usfirst.frc.team1403.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *used in the center gear auto
+ *moves the robot from the alliance wall to the lift
  */
 public class MoveToPlaceGear extends Command {
 	double distance;

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ *drives straight forward at 20% power
  */
 public class DriveWithButtonFast extends Command {
 

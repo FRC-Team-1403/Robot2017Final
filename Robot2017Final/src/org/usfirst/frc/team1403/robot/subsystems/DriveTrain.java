@@ -14,17 +14,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveTrain extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    //4 drive train motors, two on each side
+	//with the gear holder as the front, 4 and 5 are the left and are oriented negatively
+	//6 and 7 are the right and are oriented positively
     public CANTalon motor4;
     public CANTalon motor5; 
     public CANTalon motor6; 
     public CANTalon motor7;
     
+    //don't construct them because they are not actually their own objects
+    //they are wired into the breakout boards on the talons
     public Encoder leftEncoder, rightEncoder;
     
+    //gyro
     public AnalogGyro gyro;
     
+    //infrared sensor, not currently used
     public AnalogInput infra;
     
     //used to change setLeftRightPower
@@ -63,6 +68,8 @@ public class DriveTrain extends Subsystem {
     public void makeIntakeFront() {
     	isReversed = true;
     }
+    
+    //dosen't have deadzones
     public void motionMappingSetLeftRightPower(double leftPower, double rightPower){
     	if(!isReversed){
  		  // if(Math.abs(leftPower)>0.10){
@@ -93,12 +100,13 @@ public class DriveTrain extends Subsystem {
     public void setLeftRightPower(double leftPower, double rightPower)
     {
 	   if(!isReversed){//forward
-		   if(Math.abs(leftPower)>0.10){
-		   motor4.set(-leftPower);
-		   motor5.set(-leftPower);
-		   //new code
 		   
-		 
+		   //if the leftPower is below 10% then don't set the motors at all
+		   //called a deadzone
+		   //without it the robot is too sensitive to the joystick and will make driving straight hard
+		   if(Math.abs(leftPower)>0.10){
+		       motor4.set(-leftPower);
+		       motor5.set(-leftPower);
 		   }
 		   else{
 			   motor4.set(0);
@@ -106,8 +114,8 @@ public class DriveTrain extends Subsystem {
 			   
 		   }
 		   if(Math.abs(rightPower)>0.10){
-		   motor6.set(rightPower);
-		   motor7.set(rightPower);
+		       motor6.set(rightPower);
+		       motor7.set(rightPower);
 		   
 		   }
 		   else{
@@ -145,49 +153,6 @@ public class DriveTrain extends Subsystem {
     public void setLeftRightPower(double leftPower, double rightPower, double multiplier)
     {
     	this.setLeftRightPower(leftPower*multiplier, rightPower*multiplier);
-	   /*if(!isReversed){
-		   if(Math.abs(leftPower)>0.10){
-		   motor4.set(-leftPower*multiplier);
-		   motor5.set(-leftPower*multiplier);
-		   }
-		   else{
-			   motor4.set(0);
-			   motor5.set(0);
-			   
-		   }
-		   if(Math.abs(rightPower)>0.10){
-		   motor6.set(rightPower*multiplier);
-		   motor7.set(rightPower*multiplier);
-		   }
-		   
-		   
-		   else{
-			   motor6.set(0);
-			   motor7.set(0);
-			   
-		   }
-	   }
-	   else {
-		   if(Math.abs(leftPower)>0.10){
-		   motor4.set(leftPower*multiplier);
-		   motor5.set(leftPower*multiplier);
-		   }
-		   else{
-			   motor4.set(0);
-			   motor5.set(0);
-			   
-		   }
-		   if(Math.abs(rightPower)>0.10){
-		   motor6.set(-rightPower*multiplier);
-		   motor7.set(-rightPower*multiplier);
-		   }
-		   else{
-			   motor6.set(0);
-			   motor7.set(0);
-			   
-		   }
-	   }*/
-	   
     }
     
     //encoder values all in feet for motion mapping
@@ -205,6 +170,7 @@ public class DriveTrain extends Subsystem {
     public double getLeftVelocity() {
     	//return leftEncoder.getRate();
     	return motor5.getEncVelocity() * RobotMap.feetPerTick * -1 * 10;
+    	//multiplied by 10 because native velocity units are per 100ms, not 1s
     }
     
     public double getRightVelocity() {
@@ -224,7 +190,6 @@ public class DriveTrain extends Subsystem {
     }
     public void toggle(){
     	isReversed = !isReversed;
-    	
     }
     
 }
