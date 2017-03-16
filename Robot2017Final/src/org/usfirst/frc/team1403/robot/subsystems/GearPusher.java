@@ -19,7 +19,7 @@ public class GearPusher extends Subsystem {
 	public DoubleSolenoid tilter;
 	
 	public GearPusher() {
-		pusher = new DoubleSolenoid(RobotMap.gearPusher1, RobotMap.gearPusher2);
+		pusher = new DoubleSolenoid(RobotMap.gearPusher2, RobotMap.gearPusher1);
 		tilter = new DoubleSolenoid(RobotMap.gearTilter1, RobotMap.gearTilter2);
 	}
 	

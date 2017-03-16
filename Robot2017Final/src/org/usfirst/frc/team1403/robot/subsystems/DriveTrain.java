@@ -92,10 +92,12 @@ public class DriveTrain extends Subsystem {
   //do not set the motors directly; always use this method because it sets the motors differently based off of which side of the robot is considered the front
     public void setLeftRightPower(double leftPower, double rightPower)
     {
-	   if(!isReversed){
+	   if(!isReversed){//forward
 		   if(Math.abs(leftPower)>0.10){
 		   motor4.set(-leftPower);
 		   motor5.set(-leftPower);
+		   //new code
+		   
 		 
 		   }
 		   else{
@@ -106,6 +108,7 @@ public class DriveTrain extends Subsystem {
 		   if(Math.abs(rightPower)>0.10){
 		   motor6.set(rightPower);
 		   motor7.set(rightPower);
+		   
 		   }
 		   else{
 			   motor6.set(0);
@@ -113,23 +116,23 @@ public class DriveTrain extends Subsystem {
 			   
 		   }
 	   }
-	   else {
+	   else {//reverse
 		   if(Math.abs(leftPower)>0.10){
-		   motor4.set(leftPower);
-		   motor5.set(leftPower);
-		   }
-		   else{
-			   motor4.set(0);
-			   motor5.set(0);
-			   
-		   }
-		   if(Math.abs(rightPower)>0.10){
-		   motor6.set(-rightPower);
-		   motor7.set(-rightPower);
+		   motor6.set(-leftPower);
+		   motor7.set(-leftPower);
 		   }
 		   else{
 			   motor6.set(0);
 			   motor7.set(0);
+			   
+		   }
+		   if(Math.abs(rightPower)>0.10){
+		   motor4.set(rightPower);
+		   motor5.set(rightPower);
+		   }
+		   else{
+			   motor4.set(0);
+			   motor5.set(0);
 			   
 		   }
 	   }
@@ -141,7 +144,8 @@ public class DriveTrain extends Subsystem {
     //don't make a multiplier negative, use the makeGearHolderFront() and makeIntakeFront() methods
     public void setLeftRightPower(double leftPower, double rightPower, double multiplier)
     {
-	   if(!isReversed){
+    	this.setLeftRightPower(leftPower*multiplier, rightPower*multiplier);
+	   /*if(!isReversed){
 		   if(Math.abs(leftPower)>0.10){
 		   motor4.set(-leftPower*multiplier);
 		   motor5.set(-leftPower*multiplier);
@@ -155,6 +159,7 @@ public class DriveTrain extends Subsystem {
 		   motor6.set(rightPower*multiplier);
 		   motor7.set(rightPower*multiplier);
 		   }
+		   
 		   
 		   else{
 			   motor6.set(0);
@@ -181,7 +186,7 @@ public class DriveTrain extends Subsystem {
 			   motor7.set(0);
 			   
 		   }
-	   }
+	   }*/
 	   
     }
     

@@ -92,7 +92,7 @@ public class TrajectoryDriveController {
       double angleDiff = Math.toDegrees(angleDiffRads);
 
       double turn = kTurn * angleDiff;
-      Robot.driveTrain.motionMappingSetLeftRightPower(speedLeft + turn, speedRight - turn);
+     Robot.driveTrain.motionMappingSetLeftRightPower(speedLeft + turn, speedRight - turn);
       
       SmartDashboard.putNumber("Left Velocity from algorithm", followerLeft.segmentVel);
       SmartDashboard.putNumber("Right Velocity from algorithm", followerRight.segmentVel);

@@ -123,7 +123,7 @@ public class OI {
 		
 		djoyX.whileHeld(new DriveWithButtonFast());
 		djoyA.whileHeld(new DriveWithButton());
-		djoyLT.whileHeld(new VisionAimAssist());
+	//	djoyLT.whileHeld(new VisionAimAssist());
 		
 		ojoyRT.whileHeld(new Shoot());
 		//ojoyRT.whenReleased(new STOPMOTORSSHOOTERS());
@@ -135,13 +135,14 @@ public class OI {
 		ojoyR.whenPressed(new PushGearOut());
 		ojoyL.whenPressed(new LoadGear());
 		ojoyLT.whileHeld(new RollersIn());
+		ojoyX.whileHeld(new RollersOut());
 		ojoyA.whenPressed(new LoadBall());
 		ojoyLJB.whenPressed(new TurnOnTheLight());
 		ojoyRJB.whenPressed(new TurnOffTheLight());
 		ojoyStart.whileHeld(new TilterStraight());
 		ojoyBack.whileHeld(new PositiveClimb());
 		
-		djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
+	//	djoyA.whenPressed(new FollowPath(Robot.straightTestPath));
 		djoyY.whileHeld(new DriveWithOneJoystick());
 		
 		tjoyY.whenPressed(new PushGearOut());
@@ -151,8 +152,8 @@ public class OI {
 		tjoyR.whenPressed(new TilterStraight());
 		tjoyX.whenPressed(new TilterOff());
 		
-		tjoyBack.whenPressed(new GearAutoLeft());
-		tjoyStart.whenPressed(new GearAutoRight());
+		//tjoyBack.whenPressed(new GearAutoLeft());
+		//tjoyStart.whenPressed(new GearAutoRight());
 	
 	}
 }
