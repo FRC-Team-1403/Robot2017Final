@@ -18,6 +18,7 @@ public class MoveToPlaceGear extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.driveTrain.resetEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -32,13 +33,14 @@ public class MoveToPlaceGear extends Command {
     	}
     	else{
     		
-    		Robot.driveTrain.setLeftRightPower(0.1, 0.1);
+    		Robot.driveTrain.setLeftRightPower(0.15, 0.15);
     	}
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	//System.out.println(Math.abs(Robot.driveTrain.getLeftPosition())>distance);
         return (Math.abs(Robot.driveTrain.getLeftPosition())>distance);
     }
 

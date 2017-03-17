@@ -40,7 +40,7 @@ public class DriveTrain extends Subsystem {
     	motor4 = new CANTalon(4);
     	motor5 = new CANTalon(5);
     	motor6 = new CANTalon(6);
-    	motor7 = new CANTalon(7);//9
+    	motor7 = new CANTalon(1);//original talon 7 was broken, replaced with spare talon 1
     	isReversed = false;
     	
     	//the encoders and gyro use the ports in robotmap
