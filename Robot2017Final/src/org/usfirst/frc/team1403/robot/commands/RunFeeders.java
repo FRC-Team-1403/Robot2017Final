@@ -2,6 +2,7 @@ package org.usfirst.frc.team1403.robot.commands;
 
 import org.usfirst.frc.team1403.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -9,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *runs until the button is released
  */
 public class RunFeeders extends Command {
-
+	Timer timer = new Timer();
     public RunFeeders() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.feeder);
@@ -17,11 +18,15 @@ public class RunFeeders extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.feeder.startBoth();
+    	if(timer.get() > 1) {
+    		Robot.feeder.startBoth();
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -148,6 +148,8 @@ public class OI {
 		tjoyL.whenPressed(new TilterOut());
 		tjoyR.whenPressed(new TilterStraight());
 		tjoyX.whenPressed(new TilterOff());
+		tjoyRT.whenPressed(new AutoShootRed());
+		tjoyLT.whenPressed(new AutoShootBlue());
 		
 		//tjoyBack.whenPressed(new GearAutoLeft());
 		//tjoyStart.whenPressed(new GearAutoRight());

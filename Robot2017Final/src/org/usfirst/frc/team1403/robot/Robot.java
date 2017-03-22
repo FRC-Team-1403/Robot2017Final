@@ -14,6 +14,9 @@ import trajectoryLib.trajectory.TrajectoryGenerator;
 import trajectoryLib.trajectory.WaypointSequence;
 import trajectoryLib.trajectory.WaypointSequence.Waypoint;
 
+import org.usfirst.frc.team1403.robot.commands.AutoShoot;
+import org.usfirst.frc.team1403.robot.commands.AutoShootBlue;
+import org.usfirst.frc.team1403.robot.commands.AutoShootRed;
 import org.usfirst.frc.team1403.robot.commands.CenterGearAuto;
 import org.usfirst.frc.team1403.robot.commands.ClassicAuto;
 import org.usfirst.frc.team1403.robot.commands.DriveWithJoystick;
@@ -84,7 +87,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("kA", 0);
 		SmartDashboard.putNumber("kP", 0);
 		SmartDashboard.putNumber("kTurn", 0);
-		
+		SmartDashboard.putNumber("Left Shooter Voltage", 0);
+		SmartDashboard.putNumber("Right Shooter Voltage", 0);
 		//for motion mapping
 		TrajectoryGenerator.Config config = new TrajectoryGenerator.Config();
 		config.max_vel = RobotMap.maxVelocity * .5;
@@ -181,9 +185,12 @@ public class Robot extends IterativeRobot {
 
 		// schedule the autonomous command (example)
 		//TODO motion mapping command group?
-		autonomousCommand = new CenterGearAuto();
+		//autonomousCommand = new CenterGearAuto();
+		autonomousCommand = new AutoShootRed();
+		//autonomousCommand = new ClassicAuto();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+		
 		
 		
 	}
@@ -195,6 +202,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		//this auto generated line is what constantly runs all scheduled commands throughout the game
 		Scheduler.getInstance().run();
+		
+		SmartDashboard.putNumber("Gyro Degrees", Robot.driveTrain.gyro.getAngle());
 		
 		//update vision variables as autonomous runs
 		leftC = SmartDashboard.getNumber("x value", 321);
@@ -234,9 +243,12 @@ public class Robot extends IterativeRobot {
 		//this auto generated line is what constantly runs all scheduled commands throughout the game
 		Scheduler.getInstance().run();
 		
+		SmartDashboard.putNumber("GYRO DEGREES", Robot.driveTrain.gyro.getAngle());
+		
 		//display the RPM of the shooters on the smart dashboard
 		SmartDashboard.putNumber("LeftRPM", Robot.shooter.getLeftRPM()/(6*Math.PI));
 		SmartDashboard.putNumber("RightRPM", Robot.shooter.getRightRPM()/(6*Math.PI));
+		
 		
 	/*	x = SmartDashboard.getNumber("difference", 321);
 		w = SmartDashboard.getNumber("width", 321);

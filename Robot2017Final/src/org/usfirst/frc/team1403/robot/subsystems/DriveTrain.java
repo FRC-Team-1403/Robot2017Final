@@ -83,14 +83,14 @@ public class DriveTrain extends Subsystem {
  	   }
  	   else {
  		  
- 		   motor4.set(leftPower);
- 		   motor5.set(leftPower);
+ 		   motor4.set(rightPower);
+ 		   motor5.set(rightPower);
  		
  			  
  		   
  		  
- 		   motor6.set(-rightPower);
- 		   motor7.set(-rightPower);
+ 		   motor6.set(-leftPower);
+ 		   motor7.set(-leftPower);
  		 
  			
  	   }

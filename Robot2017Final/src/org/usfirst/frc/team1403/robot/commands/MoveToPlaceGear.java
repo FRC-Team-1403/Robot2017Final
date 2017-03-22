@@ -19,29 +19,35 @@ public class MoveToPlaceGear extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveTrain.resetEncoders();
+    	Robot.driveTrain.gyro.reset();
+    	setTimeout(2);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double angleDiff = Robot.driveTrain.gyro.getAngle();
+    	double turn = angleDiff * 1.0/200;
     	if(Math.abs(Robot.driveTrain.getLeftPosition())<distance*.75){
-    		
-    		Robot.driveTrain.setLeftRightPower(0.5, 0.5);
+    		//Robot.driveTrain.motionMappingSetLeftRightPower(0.25-turn, 0.25+turn);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(0.25, 0.25);
     	}
     	else if(Math.abs(Robot.driveTrain.getLeftPosition())<distance*.9){
     		
-    		Robot.driveTrain.setLeftRightPower(0.25, 0.25);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(0.2, 0.2);
+    		//Robot.driveTrain.motionMappingSetLeftRightPower(0.2-turn, 0.2+turn);
     	}
     	else{
     		
-    		Robot.driveTrain.setLeftRightPower(0.15, 0.15);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(0.15, 0.15);
+    		//Robot.driveTrain.motionMappingSetLeftRightPower(0.2-turn, 0.2+turn);
     	}
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	//System.out.println(Math.abs(Robot.driveTrain.getLeftPosition())>distance);
-        return (Math.abs(Robot.driveTrain.getLeftPosition())>distance);
+    	System.out.println(Math.abs(Robot.driveTrain.getLeftPosition())>distance);
+        return (Math.abs(Robot.driveTrain.getLeftPosition())>distance) && isTimedOut();
     }
 
     // Called once after isFinished returns true

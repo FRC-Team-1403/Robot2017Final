@@ -23,7 +23,7 @@ public class Climber extends Subsystem {
     }
     
     public void climbwithJoystick(){
-    	climber.set(Robot.oi.ojoy.getRawAxis(1));
+    	climber.set(-Robot.oi.ojoy.getRawAxis(1));
     }
   
     public void climbstop(){

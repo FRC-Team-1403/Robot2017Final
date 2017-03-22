@@ -13,7 +13,7 @@ public class CenterGearAuto extends CommandGroup {
 
     public CenterGearAuto() {
     	//Robot.driveTrain.resetEncoders();
-      addSequential(new MoveToPlaceGear(51.3/12.0));
+      addSequential(new MoveToPlaceGear(57.3/12.0));
         addSequential(new PushGearOutInAuto());
         addSequential(new DriveStraight(-2));
 

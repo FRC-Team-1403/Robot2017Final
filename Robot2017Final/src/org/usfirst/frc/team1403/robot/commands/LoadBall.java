@@ -2,6 +2,7 @@ package org.usfirst.frc.team1403.robot.commands;
 
 import org.usfirst.frc.team1403.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -9,19 +10,26 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class LoadBall extends Command {
 
+	Timer timer;
     public LoadBall() {
         // Use requires() here to declare subsystem dependencies
+    	timer = new Timer();
         requires(Robot.feeder);
-        setTimeout(.2);
+        setTimeout(.6);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timer.start();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.feeder.startBoth();
+    	if(timer.get()>.3) {
+    		Robot.feeder.startBoth();
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
