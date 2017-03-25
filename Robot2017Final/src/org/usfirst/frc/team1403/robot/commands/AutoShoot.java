@@ -12,9 +12,9 @@ public class AutoShoot extends CommandGroup {
       addParallel(new VoltageHack(), 4);
       addSequential(new RunFeeders(), 4);
      
-      addSequential(new DriveStraight(-1));
+      addSequential(new DriveStraight(-1, 0.2));
       addSequential(new TurnInPlace(45));
-      addSequential(new DriveStraight(-4));
+      addSequential(new DriveStraight(-4, 0.2));
       
 
         // To run multiple commands at the same time,

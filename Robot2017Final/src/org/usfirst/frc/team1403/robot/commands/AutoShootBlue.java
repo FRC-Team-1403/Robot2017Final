@@ -12,9 +12,9 @@ public class AutoShootBlue extends CommandGroup {
       addParallel(new VoltageHack(), 7);
       addSequential(new RunFeeders(), 7);
      
-      addSequential(new DriveStraight(-1));
+      addSequential(new DriveStraight(-1, 0.2));
       addSequential(new TurnInPlace(-45));
-      addSequential(new DriveStraight(-6));
+      addSequential(new DriveStraight(-6, 0.2));
       
 
         // To run multiple commands at the same time,

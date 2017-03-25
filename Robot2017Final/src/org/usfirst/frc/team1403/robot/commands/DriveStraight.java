@@ -10,31 +10,37 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveStraight extends Command {
 
 	public double distance;
+	public double speed;
 	
-    public DriveStraight(double distance) {
+    public DriveStraight(double distance, double speed) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         this.distance = distance;
+        this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveTrain.resetEncoders();
+    	Robot.driveTrain.gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(distance>0) {
-    		Robot.driveTrain.setLeftRightPower(0.3, 0.3);
+    	System.out.println("Drive straight");
+    	double gyroPower = Robot.driveTrain.gyro.getAngle()*0.01;
+    	if(distance>0.0) {
+    		Robot.driveTrain.motionMappingSetLeftRightPower(speed-gyroPower, speed+gyroPower);
     	}
     	else {
-    		Robot.driveTrain.setLeftRightPower(-0.3, -0.3);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(-(speed+gyroPower), -(speed-gyroPower));
     	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (distance>0) {
+        if (distance>0.0) {
         	return Robot.driveTrain.getLeftPosition() > distance && Robot.driveTrain.getRightPosition() > distance;
         }
         return Robot.driveTrain.getLeftPosition() < distance && Robot.driveTrain.getRightPosition() < distance;

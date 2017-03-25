@@ -20,11 +20,12 @@ public class TurnInPlace extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Turn In Place");
     	if(angle > 0) {
-    		Robot.driveTrain.motionMappingSetLeftRightPower(.4, -.4);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(0.35, -0.35);
     	}
     	else {
-    		Robot.driveTrain.motionMappingSetLeftRightPower(-.4, .4);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(-0.35, 0.35);
 
     	}
     	
@@ -33,6 +34,7 @@ public class TurnInPlace extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	  System.out.println("RUNNING..................................................................");
     	if(angle > 0) {
             return Robot.driveTrain.gyro.getAngle() > angle;
 
@@ -43,6 +45,8 @@ public class TurnInPlace extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.driveTrain.setLeftRightPower(0, 0);
+    	System.out.println("TURN FINISHED");
+    	Robot.driveTrain.resetEncoders();
     }
 
     // Called when another command which requires one or more of the same

@@ -144,12 +144,13 @@ public class OI {
 		//testing the pneumatics
 		tjoyY.whenPressed(new PushGearOut());
 		tjoyA.whenPressed(new RetractGearPusher());
-		tjoyB.whenPressed(new PusherOff());
+		tjoyB.whenPressed(new CenterGearAuto());
 		tjoyL.whenPressed(new TilterOut());
 		tjoyR.whenPressed(new TilterStraight());
-		tjoyX.whenPressed(new TilterOff());
+		tjoyX.whenPressed(new VisionAimAssist());
 		tjoyRT.whenPressed(new AutoShootRed());
 		tjoyLT.whenPressed(new AutoShootBlue());
+		tjoyStart.whenPressed(new LeftGearAuto());
 		
 		//tjoyBack.whenPressed(new GearAutoLeft());
 		//tjoyStart.whenPressed(new GearAutoRight());

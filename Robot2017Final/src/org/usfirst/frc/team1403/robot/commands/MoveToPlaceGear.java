@@ -29,7 +29,7 @@ public class MoveToPlaceGear extends Command {
     	double turn = angleDiff * 1.0/200;
     	if(Math.abs(Robot.driveTrain.getLeftPosition())<distance*.75){
     		//Robot.driveTrain.motionMappingSetLeftRightPower(0.25-turn, 0.25+turn);
-    		Robot.driveTrain.motionMappingSetLeftRightPower(0.25, 0.25);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(0.3, 0.3);
     	}
     	else if(Math.abs(Robot.driveTrain.getLeftPosition())<distance*.9){
     		

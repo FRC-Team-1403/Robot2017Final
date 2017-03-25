@@ -18,7 +18,7 @@ public class LoadBallsAuto extends CommandGroup {
    	    addSequential(new LoadBall());
    	 	addSequential(new LoadBall());
    	 	addSequential(new LoadBall());
-   	    addSequential(new DriveStraight(-2));
+   	    addSequential(new DriveStraight(-2, 0.2));
    	    // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
