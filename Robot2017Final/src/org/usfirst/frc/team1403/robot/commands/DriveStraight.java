@@ -41,7 +41,7 @@ public class DriveStraight extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     
-    	return  Math.abs(Robot.driveTrain.getLeftPosition()) < Math.abs(distance) && Math.abs(Robot.driveTrain.getRightPosition()) < Math.abs(distance);
+    	return  Math.abs(Robot.driveTrain.getLeftPosition()) >= Math.abs(distance) && Math.abs(Robot.driveTrain.getRightPosition()) >= Math.abs(distance);
     
     }
 
