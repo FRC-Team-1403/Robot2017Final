@@ -40,11 +40,9 @@ public class DriveStraight extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (distance>0.0) {
-        	return Robot.driveTrain.getLeftPosition() > distance && Robot.driveTrain.getRightPosition() > distance;
-        }
-        return Robot.driveTrain.getLeftPosition() < distance && Robot.driveTrain.getRightPosition() < distance;
-
+    
+    	return  Math.abs(Robot.driveTrain.getLeftPosition()) < Math.abs(distance) && Math.abs(Robot.driveTrain.getRightPosition()) < Math.abs(distance);
+    
     }
 
     // Called once after isFinished returns true

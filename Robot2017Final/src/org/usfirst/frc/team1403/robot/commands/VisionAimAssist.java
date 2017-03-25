@@ -27,25 +27,25 @@ public class VisionAimAssist extends Command {
     	double power = Math.abs((Math.abs(diff)-30)/100);
     	
     	if (diff <= -34 && diff != 120) {
-    		if (power < 0.05){
+  /*  		if (power < 0.05){
     			power = 0.05;
     		}
     		
     		else if (power > 0.8){
     			power = power - 0.4;
-    		}
+    		} */
     		Robot.driveTrain.motionMappingSetLeftRightPower(power, -power);
     	}
     		    	
     	else if (diff >= -26 && diff != 120){
     		
-    		if (power < 0.05){
+ /*   		if (power < 0.05){
     			power = 0.05;
     		}
     		else if (power > 0.8){
     			power = power - 0.4;
     		}
-    		
+    			*/
         	Robot.driveTrain.motionMappingSetLeftRightPower(-power, power);
        	}
     	
