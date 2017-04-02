@@ -13,7 +13,7 @@ public class LoadGear extends CommandGroup {
     public LoadGear() {
         addSequential(new TilterOut());
         addSequential(new RetractGearPusher());
-        
+        addSequential(new GearCatcherDown());
  
     }
 }

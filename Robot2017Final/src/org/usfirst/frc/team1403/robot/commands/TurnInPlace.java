@@ -22,10 +22,10 @@ public class TurnInPlace extends Command {
     protected void execute() {
     	System.out.println("Turn In Place");
     	if(angle > 0) {
-    		Robot.driveTrain.motionMappingSetLeftRightPower(0.35, -0.35);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(0.32, -0.32);
     	}
     	else {
-    		Robot.driveTrain.motionMappingSetLeftRightPower(-0.35, 0.35);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(-0.32, 0.32);
 
     	}
     	

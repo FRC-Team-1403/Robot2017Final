@@ -12,9 +12,7 @@ public class raspInit {
 		OutputStream out;
 
 		try {
-			String[] command = new String[] { command_c };
-
-			p = new ProcessBuilder(command).start();
+			p = new ProcessBuilder(command_c).start();
 
 			std = p.getInputStream();
 			out = p.getOutputStream();
@@ -25,12 +23,12 @@ public class raspInit {
 			writer.write("raspberry");
 			writer.newLine();
 			writer.flush();
-			Thread.sleep(10000);
+			Thread.sleep(1);
 			
 			writer.write("cd Desktop/VP/VP");
 			writer.newLine();
 			writer.flush();
-			Thread.sleep(10000);
+			Thread.sleep(1);
 			
 			writer.write("python __init__.py");
 			writer.newLine();

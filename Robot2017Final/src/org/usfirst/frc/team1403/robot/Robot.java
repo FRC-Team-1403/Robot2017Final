@@ -2,6 +2,7 @@ package org.usfirst.frc.team1403.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -21,10 +22,13 @@ import org.usfirst.frc.team1403.robot.commands.CenterGearAuto;
 import org.usfirst.frc.team1403.robot.commands.ClassicAuto;
 import org.usfirst.frc.team1403.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team1403.robot.commands.FollowPath;
+import org.usfirst.frc.team1403.robot.commands.GearAutoRight;
+import org.usfirst.frc.team1403.robot.commands.LeftGearAuto;
 import org.usfirst.frc.team1403.robot.subsystems.Climber;
 import org.usfirst.frc.team1403.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1403.robot.subsystems.Feeder;
 import org.usfirst.frc.team1403.robot.subsystems.FlyWheel;
+import org.usfirst.frc.team1403.robot.subsystems.GearCatcher;
 import org.usfirst.frc.team1403.robot.subsystems.GearPusher;
 import org.usfirst.frc.team1403.robot.subsystems.Intake;
 import org.usfirst.frc.team1403.robot.subsystems.Light;
@@ -44,23 +48,23 @@ public class Robot extends IterativeRobot {
 	public static GearPusher gearPusher;
 	public static FlyWheel shooter;
 	public static Feeder feeder;
+	public static GearCatcher catcher;
 	public static Climber climb;
 	public static Light light;
 	public static OI oi;
+	public String autoselector;
 	
-	//declare variables for vision
-	public static raspInit rasp_init;
 	public static double x,h,irs,bottomLeg,dC,rS,hpN,totalInchHeight,nA,curve;
 	public static double currentAngle,totalInchWidth,diffConversion,w,hd2,coor;
 	public static double hypotenuse,subtracted,autoGyro,neededAngle;
 	public static double angle,leftC,inv,turn,autodist,inchRotation;
-	public static raspInit raspinit;
+	//public static raspInit raspinit;
 	
 	//declare variables for motion mapping paths
 	//public static Path straightTestPath, startToGearLeft, gearToAutoLineLeft, startToGearRight, gearToAutoLineRight;
 	
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<Command> chooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -68,6 +72,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		chooser = new SendableChooser<Command>();
 		//construct subsystems
 		CameraServer.getInstance().startAutomaticCapture();
 		light = new Light();
@@ -77,8 +82,7 @@ public class Robot extends IterativeRobot {
 		shooter = new FlyWheel();
 		feeder = new Feeder();
 		climb = new Climber();
-		//rasp_init = new raspInit("ssh root@raspberrypi.local"); //editable for path, put plink and putty
-		//
+		catcher = new GearCatcher();
 		//initialize editable SmartDashboard numbers
 		SmartDashboard.putNumber("Left Power", 0);
 		SmartDashboard.putNumber("Right Power", 0);
@@ -95,6 +99,8 @@ public class Robot extends IterativeRobot {
 		config.max_acc = RobotMap.maxAcceleration;
 		config.max_jerk = RobotMap.maxJerk; //TODO pick a value
 		config.dt = .02;
+	//	Robot.driveTrain.gyro.calibrate();
+		
 		  //Robot.shooter.rightShooter.reverseSensor(true);
 		 // Robot.shooter.rightShooter.reverseOutput(false);
 		/*WaypointSequence straightTestSequence = new WaypointSequence(5);
@@ -131,16 +137,25 @@ public class Robot extends IterativeRobot {
 		
 		
 		
-		//chooser.addDefault("Default Auto", new ExampleCommand());
-				// chooser.addObject("My Auto", new MyAutoCommand());
-				SmartDashboard.putData("Auto mode", chooser);
+		chooser.addDefault("line", new ClassicAuto());
+		chooser.addObject("left", new LeftGearAuto());
+		chooser.addObject("center", new CenterGearAuto());
+		chooser.addObject("shoot red", new AutoShootRed());
+		chooser.addObject("shoot blue", new AutoShootBlue());
+		
+		SmartDashboard.putData("Auto mode", chooser);
 		
 		//LAST FOR A REASON.......... DO NOT CHANGE!!!!!!!!!!!!!!!!!!!!!!!!
 		oi = new OI();
 		//I REPEAT... DO NOT CHANGE THIS AND DO NOT ADD ANYTHING AFTER THIS....
+		//only for pi
+	//	Timer.delay(5);
+	//	rasp_init = new raspInit("ssh pi@raspberrypi.local");
 		
 		//oi has to be constructed last because it contains references to other subsystems
 		//the code will have null pointers if oi is constructed before the other subsystems
+	//	autonomous
+		
 	}
 
 	/**
@@ -161,8 +176,10 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void autonomousInit() {
-		//autonomousCommand = chooser.getSelected();
 		
+		
+		
+		//rasp_init = new raspInit("ssh pi@raspberrypi.local");
 		//intialize all vision variables
 		driveTrain.gyro.reset();
 		turn = Math.atan(Math.abs(autodist/diffConversion))*180/Math.PI;
@@ -186,8 +203,25 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		//TODO motion mapping command group?
 		//autonomousCommand = new CenterGearAuto();
-		autonomousCommand = new AutoShootRed();
+		//autoselector = SmartDashboard.getString("auto", "center");
+		/*if(autoselector.equals("line")){
+		autonomousCommand = new ClassicAuto();
+		}
+		else if(autoselector.equals("center")){
+			autonomousCommand = new CenterGearAuto();
+			}
+		else if(autoselector.equals("left")){
+			autonomousCommand = new LeftGearAuto();
+			}
+		else {
+			System.out.println("Houston we have a problem");
+		}*/
+	//	autonomousCommand = new LeftGearAuto();
+		
+		
 		//autonomousCommand = new ClassicAuto();
+		
+		autonomousCommand = new LeftGearAuto();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		
@@ -203,7 +237,7 @@ public class Robot extends IterativeRobot {
 		//this auto generated line is what constantly runs all scheduled commands throughout the game
 		Scheduler.getInstance().run();
 		
-		SmartDashboard.putNumber("Gyro Degrees", Robot.driveTrain.gyro.getAngle());
+		SmartDashboard.putNumber("GYRO GYRO GYRO .... AAA111", Robot.driveTrain.gyro.getAngle());
 		
 		//update vision variables as autonomous runs
 		leftC = SmartDashboard.getNumber("x value", 321);
@@ -226,10 +260,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		
-		rasp_init = new raspInit("ssh @raspberrypi.local");
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		Robot.driveTrain.gyro.reset();
+		Robot.driveTrain.resetEncoders();
+		
 	//	Robot.driveTrain.leftEncoder.reset();
 	//	Robot.driveTrain.leftEncoder.reset();
 		Robot.driveTrain.isReversed = false;
@@ -249,7 +284,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("LeftRPM", Robot.shooter.getLeftRPM()/(6*Math.PI));
 		SmartDashboard.putNumber("RightRPM", Robot.shooter.getRightRPM()/(6*Math.PI));
 		
-		
+		SmartDashboard.putNumber("Raw Left", Robot.driveTrain.motor5.getAnalogInPosition());
+		SmartDashboard.putNumber("Raw Right", Robot.driveTrain.motor7.getAnalogInPosition());
 	/*	x = SmartDashboard.getNumber("difference", 321);
 		w = SmartDashboard.getNumber("width", 321);
 		h = SmartDashboard.getNumber("height", 241);

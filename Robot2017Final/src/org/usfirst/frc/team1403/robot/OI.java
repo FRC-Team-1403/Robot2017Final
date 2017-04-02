@@ -129,14 +129,14 @@ public class OI {
 		ojoyB.whileHeld(new EBrake());
 		
 		//ojoyA.whileHeld(new RollersOut());
-		ojoyR.whenPressed(new PushGearOut());
+		ojoyR.whenPressed(new FullGearOut());
 		ojoyL.whenPressed(new LoadGear());
 		ojoyLT.whileHeld(new RollersIn());
 		ojoyX.whileHeld(new RollersOut());
 		ojoyA.whenPressed(new LoadBall());
-		ojoyLJB.whenPressed(new TurnOnTheLight());
-		ojoyRJB.whenPressed(new TurnOffTheLight());
-		ojoyStart.whileHeld(new TilterStraight());
+		ojoyLJB.whileHeld(new GearCatcherUp());
+		ojoyRJB.whileHeld(new GearCatcherDown());
+		ojoyStart.whileHeld(new TilterStraightGroup());
 		ojoyBack.whileHeld(new PositiveClimb());
 		
 	
@@ -144,7 +144,9 @@ public class OI {
 		//testing the pneumatics
 		tjoyY.whenPressed(new PushGearOut());
 		tjoyA.whenPressed(new RetractGearPusher());
-		tjoyB.whenPressed(new CenterGearAuto());
+		//tjoyA.whenPressed(new DriveWithTime(2, -0.4));
+		//tjoyB.whenPressed(new CenterGearAuto());
+		tjoyB.whenPressed(new TurnInPlace(57.0));
 		tjoyL.whenPressed(new TilterOut());
 		tjoyR.whenPressed(new TilterStraight());
 		tjoyX.whenPressed(new VisionAimAssist());

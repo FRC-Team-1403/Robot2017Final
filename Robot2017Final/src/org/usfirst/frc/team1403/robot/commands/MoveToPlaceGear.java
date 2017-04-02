@@ -46,7 +46,7 @@ public class MoveToPlaceGear extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	System.out.println(Math.abs(Robot.driveTrain.getLeftPosition())>distance);
+    	System.out.println(Math.abs(Robot.driveTrain.getRightPosition())>distance);
         return (Math.abs(Robot.driveTrain.getLeftPosition())>distance) && isTimedOut();
     }
 

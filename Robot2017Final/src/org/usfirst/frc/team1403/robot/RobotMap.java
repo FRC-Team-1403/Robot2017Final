@@ -14,7 +14,7 @@ public class RobotMap {
 	
 	//motion mapping constants
 	//public static double feetPerTick = Math.PI/3072;
-	public static double feetPerTick = .0010047574;
+	public static double feetPerTick = 0.0010047574;
 	public static double wheelBaseWidthInFeet = 21.125;
 	public static double maxVelocity = 12.5;
 	public static double maxAcceleration = 5;
