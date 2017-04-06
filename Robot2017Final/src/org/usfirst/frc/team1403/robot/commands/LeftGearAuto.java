@@ -17,11 +17,11 @@ public class LeftGearAuto extends CommandGroup {
     //	addSequential(new DriveStraight(45.0/12.0, 0.3));
     	addSequential(new VisionAimAssist());
     //    addSequential(new DriveStraight(96.0/12.0, 0.3), 2);
-     addSequential(new DriveWithTime(3, 0.4));
-    	addSequential(new PushGearOutInAuto());
-        addSequential(new DriveWithTime(2, -0.4));
-        addSequential(new TurnInPlace(-55.0));
-        addSequential(new DriveWithTime(10, 1));
+    	addSequential(new DriveWithTime(3, 0.4));
+//    	addSequential(new PushGearOutInAuto());
+//        addSequential(new DriveWithTime(2, -0.4));
+//        addSequential(new TurnInPlace(-55.0));
+//        addSequential(new DriveWithTime(10, 1));
 
         //      addSequential(new Command2());
         // these will run in order.

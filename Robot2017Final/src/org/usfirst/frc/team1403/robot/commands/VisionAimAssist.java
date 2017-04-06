@@ -24,7 +24,7 @@ public class VisionAimAssist extends Command {
     	diff = SmartDashboard.getNumber("difference", 321);
     	SmartDashboard.putBoolean("Aligned", false);
     	
-    	double power = Math.abs((Math.abs(diff)-30)/100);
+    	double power = Math.abs((Math.abs(diff)-30)/150);
     	
     	if (diff <= -34 && diff != 120) {
   /*  		if (power < 0.05){
@@ -34,7 +34,7 @@ public class VisionAimAssist extends Command {
     		else if (power > 0.8){
     			power = power - 0.4;
     		} */
-    		Robot.driveTrain.motionMappingSetLeftRightPower(power, -power);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(0.23, -0.23);
     	}
     		    	
     	else if (diff >= -26 && diff != 120){
@@ -46,11 +46,11 @@ public class VisionAimAssist extends Command {
     			power = power - 0.4;
     		}
     			*/
-        	Robot.driveTrain.motionMappingSetLeftRightPower(-power, power);
+        	Robot.driveTrain.motionMappingSetLeftRightPower(-0.23, 0.23);
        	}
     	
     	else if (diff == 120){
-    		Robot.driveTrain.motionMappingSetLeftRightPower(0.3, -0.3);
+    		Robot.driveTrain.motionMappingSetLeftRightPower(-0.3, 0.3);
     	}
     	
     	

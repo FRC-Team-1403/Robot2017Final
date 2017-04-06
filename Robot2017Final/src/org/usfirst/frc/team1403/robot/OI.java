@@ -28,6 +28,7 @@ import org.usfirst.frc.team1403.robot.commands.VoltageAllSteps;
 import org.usfirst.frc.team1403.robot.commands.VoltageHack;
 
 import CougarLibrary.JoystickAnalogButton;
+import CougarLibrary.RobovikingStick;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -40,7 +41,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	
 	//djoy is the driver's configuration at competition
-	public Joystick djoy = new Joystick(0);
+	public RobovikingStick djoy = new RobovikingStick(0);
 	public JoystickButton djoyA = new JoystickButton(djoy, 1);
 	public JoystickButton djoyB = new JoystickButton(djoy, 2);
 	public JoystickButton djoyX = new JoystickButton(djoy, 3);
@@ -58,7 +59,7 @@ public class OI {
 	//ojoy is the operator's configuration at competition
 	//only bind necessary functionality to ojoy, like command groups
 	//do not bind basic functionality that wouldn't be used in a match, do that in tjoy
-	public Joystick ojoy = new Joystick(1);
+	public RobovikingStick ojoy = new RobovikingStick(1);
 	public JoystickButton ojoyA = new JoystickButton(ojoy, 1);
 	public JoystickButton ojoyB = new JoystickButton(ojoy, 2);
 	public JoystickButton ojoyX = new JoystickButton(ojoy, 3);
@@ -145,8 +146,8 @@ public class OI {
 		tjoyY.whenPressed(new PushGearOut());
 		tjoyA.whenPressed(new RetractGearPusher());
 		//tjoyA.whenPressed(new DriveWithTime(2, -0.4));
-		//tjoyB.whenPressed(new CenterGearAuto());
-		tjoyB.whenPressed(new TurnInPlace(57.0));
+		tjoyB.whenPressed(new GearCenter());
+		//tjoyB.whenPressed(new TurnInPlace(57.0));
 		tjoyL.whenPressed(new TilterOut());
 		tjoyR.whenPressed(new TilterStraight());
 		tjoyX.whenPressed(new VisionAimAssist());

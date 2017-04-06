@@ -12,11 +12,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterGearAuto extends CommandGroup {
 
     public CenterGearAuto() {
-    	//Robot.driveTrain.resetEncoders();//lol janum has glasses
       addSequential(new MoveToPlaceGear(45.0/12.0));
       addSequential(new VisionAimAssist());
       addSequential(new MoveToPlaceGear(100), 2);
-  //    addSequential(new DriveStraight(-2.0/12.0));//lol
+  //    addSequential(new DriveStraight(-2.0/12.0));
   //   addSequential(new TimeDrive(0.3));
       addSequential(new PushGearOutInAuto());
       addSequential(new DriveWithTime(2, -0.4));
