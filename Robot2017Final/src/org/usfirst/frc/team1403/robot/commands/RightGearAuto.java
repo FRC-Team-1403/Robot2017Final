@@ -10,18 +10,26 @@ public class RightGearAuto extends CommandGroup {
 
     public RightGearAuto() {
         // Add Commands here:
+    	addSequential(new DriveStraight(60.0/12.0, 0.3));
+    	addSequential(new TurnInPlace(-55.0));
+    	addSequential(new DriveStraight(96.0/12.0, 0.3), 3);
+    	
+    	
+    	
+    /*	
+    	
     	addSequential(new MoveToPlaceGear(62.0/12.0));
      //   addSequential(new DriveStraight(57.0/12.0, 0.3));
     	addSequential(new TurnInPlace(-57.0));
     	addSequential(new MoveToPlaceGear(45.0/12.0));
     //	addSequential(new DriveStraight(45.0/12.0, 0.3));
-    	addSequential(new VisionAimAssist());
+    //	addSequential(new VisionAimAssist());
         addSequential(new DriveStraight(96.0/12.0, 0.3), 2);
         addSequential(new PushGearOutInAuto());
         addSequential(new DriveStraight(-2, 0.4));
         addSequential(new TurnInPlace(55.0));
         addSequential(new DriveStraight(10, 1));
-
+*/
         //      addSequential(new Command2());
         // these will run in order.
 

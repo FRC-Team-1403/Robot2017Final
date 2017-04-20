@@ -9,10 +9,11 @@ public class GearCenter extends CommandGroup {
 
     public GearCenter() {
         // Add Commands here:
-        addSequential(new DriveStraight(150.0/12.0, 0.27), 5.5);
-        addSequential(new PushGearOutInAuto());
+    //	addSequential(new RetractGearPusher());
+    	addSequential(new DriveTimeGyro(0.3), 5.5);
+    	addSequential(new PushGearOutInAuto());
         addSequential(new DriveWithTime(1, -0.4));
-        addSequential(new RetractGearPusher());
+    //    addSequential(new RetractGearPusher());
         //      addSequential(new Command2());
         // these will run in order.
 

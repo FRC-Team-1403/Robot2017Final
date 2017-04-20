@@ -139,7 +139,7 @@ public class OI {
 		ojoyRJB.whileHeld(new GearCatcherDown());
 		ojoyStart.whileHeld(new TilterStraightGroup());
 		ojoyBack.whileHeld(new PositiveClimb());
-		
+		ojoyY.whenPressed(new RetractGearPusher());
 	
 		
 		//testing the pneumatics

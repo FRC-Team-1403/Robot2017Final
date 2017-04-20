@@ -182,7 +182,9 @@ public class DriveTrain extends Subsystem {
     	//leftEncoder.reset();
     	//rightEncoder.reset();
     	motor5.setEncPosition(0);
+    	motor5.setPosition(0);
     	motor7.setEncPosition(0);
+    	motor7.setPosition(0);
     }
     
     public double getAngleInRadians() {

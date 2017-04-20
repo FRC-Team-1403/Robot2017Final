@@ -25,6 +25,7 @@ import org.usfirst.frc.team1403.robot.commands.FollowPath;
 import org.usfirst.frc.team1403.robot.commands.GearAutoRight;
 import org.usfirst.frc.team1403.robot.commands.GearCenter;
 import org.usfirst.frc.team1403.robot.commands.LeftGearAuto;
+import org.usfirst.frc.team1403.robot.commands.RightGearAuto;
 import org.usfirst.frc.team1403.robot.subsystems.Climber;
 import org.usfirst.frc.team1403.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1403.robot.subsystems.Feeder;
@@ -144,6 +145,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("shoot red", new AutoShootRed());
 		chooser.addObject("shoot blue", new AutoShootBlue());
 		chooser.addObject("Gear Center", new GearCenter());
+	//	chooser.addObject(", object);
 		
 		SmartDashboard.putData("Auto mode", chooser);
 		
@@ -171,6 +173,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		chooserint=0;
 		//raspInit.release(raspinit.p);
+		Robot.gearPusher.retract();
 	}
 
 	@Override
@@ -178,16 +181,17 @@ public class Robot extends IterativeRobot {
 		if(Robot.oi.ojoy.getButtonPressedOneShot(1)){
 			//if(Robot.oi.ojoy.(1))
 			chooserint++;
-			SmartDashboard.putNumber("chooserint", chooserint%5);
+			SmartDashboard.putNumber("chooserint", chooserint%7);
 		}
 		
-		switch(chooserint%6){
+		switch(chooserint%7){
 		case 0: SmartDashboard.putString("Auto Selector", "Line");break;
 		case 1: SmartDashboard.putString("Auto Selector", "Left");break;
 		case 2: SmartDashboard.putString("Auto Selector", "Center");break;
 		case 3: SmartDashboard.putString("Auto Selector", "Shoot Red");break;
 		case 4: SmartDashboard.putString("Auto Selector", "Shoot Blue");break;
 		case 5: SmartDashboard.putString("Auto Selector", "Gear Center");break;
+		case 6: SmartDashboard.putString("Auto Selector", "Right");break;
 		}
 		
 		Scheduler.getInstance().run();
@@ -239,13 +243,14 @@ public class Robot extends IterativeRobot {
 		
 		autonomousCommand = new ClassicAuto();
 		
-		switch(chooserint%6){
+		switch(chooserint%7){
 		case 0: autonomousCommand = new ClassicAuto();break;
 		case 1: autonomousCommand = new LeftGearAuto();break;
 		case 2: autonomousCommand = new CenterGearAuto();break;
 		case 3: autonomousCommand = new AutoShootRed();break;
 		case 4: autonomousCommand = new AutoShootBlue();break;
 		case 5: autonomousCommand = new GearCenter();break;
+		case 6: autonomousCommand = new RightGearAuto();break;
 		}
 		
 		if (autonomousCommand != null)
